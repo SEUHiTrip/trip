@@ -82,7 +82,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/chris/lr/slidemenu/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="30" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0" vertical-offset="702" max-vertical-offset="5256">
+            <state line="35" column="30" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="5904">
               <folding />
             </state>
           </provider>
@@ -91,7 +91,7 @@
       <file leaf-file-name="FragmentNews.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentNews.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="13" selection-start="822" selection-end="822" vertical-scroll-proportion="0.33248082" vertical-offset="14" max-vertical-offset="1980">
+            <state line="28" column="13" selection-start="822" selection-end="822" vertical-scroll-proportion="-0.9207161" vertical-offset="504" max-vertical-offset="1980">
               <folding />
             </state>
           </provider>
@@ -100,10 +100,8 @@
       <file leaf-file-name="BaseFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/BaseFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="53" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="23" column="53" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="918">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -111,7 +109,7 @@
       <file leaf-file-name="FragmentHomepage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentHomepage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1800">
+            <state line="27" column="0" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="2268">
               <folding />
             </state>
           </provider>
@@ -120,7 +118,7 @@
       <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="24" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="522">
+            <state line="7" column="24" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="522">
               <folding />
             </state>
           </provider>
@@ -129,7 +127,7 @@
       <file leaf-file-name="card_inner_news_text.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_inner_news_text.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="43" selection-start="373" selection-end="373" vertical-scroll-proportion="-5.586207" vertical-offset="0" max-vertical-offset="324">
+            <state line="9" column="43" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="324">
               <folding />
             </state>
           </provider>
@@ -141,7 +139,7 @@
       <file leaf-file-name="fragment_news.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_news.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="52" selection-start="437" selection-end="437" vertical-scroll-proportion="-6.5172415" vertical-offset="9" max-vertical-offset="396">
+            <state line="11" column="52" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="396">
               <folding />
             </state>
           </provider>
@@ -153,10 +151,8 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-              <folding>
-                <element signature="e#560#578#0" expanded="true" />
-              </folding>
+            <state line="9" column="0" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="594">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -748,6 +744,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1036,7 +1033,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1095,6 +1091,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1120,19 +1129,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1268,12 +1264,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-4" width="1368" height="773" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32822084" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39814815" sideWeight="0.56136364" order="3" side_tool="false" content_ui="tabs" />
@@ -1290,12 +1285,13 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27155825" sideWeight="0.49880096" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27155825" sideWeight="0.49880096" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271605" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1364,9 +1360,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="33" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="666">
-          <folding>
-            <element signature="e#560#578#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1429,9 +1423,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="33" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="666">
-          <folding>
-            <element signature="e#560#578#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1489,9 +1481,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="33" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="666">
-          <folding>
-            <element signature="e#560#578#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1617,7 +1607,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_news.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="52" selection-start="437" selection-end="437" vertical-scroll-proportion="-6.5172415" vertical-offset="9" max-vertical-offset="396">
+        <state line="11" column="52" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="396">
           <folding />
         </state>
       </provider>
@@ -1627,7 +1617,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_inner_news_text.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="43" selection-start="373" selection-end="373" vertical-scroll-proportion="-5.586207" vertical-offset="0" max-vertical-offset="324">
+        <state line="9" column="43" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="324">
           <folding />
         </state>
       </provider>
@@ -1645,9 +1635,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/BaseFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="53" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1668,9 +1656,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-          <folding>
-            <element signature="e#560#578#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1683,7 +1669,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentNews.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="13" selection-start="822" selection-end="822" vertical-scroll-proportion="0.33248082" vertical-offset="14" max-vertical-offset="1980">
+        <state line="28" column="13" selection-start="822" selection-end="822" vertical-scroll-proportion="-0.9207161" vertical-offset="504" max-vertical-offset="1980">
           <folding />
         </state>
       </provider>
