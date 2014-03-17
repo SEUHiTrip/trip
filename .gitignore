@@ -9,6 +9,8 @@
 *.apk
 *.ap_
 *.dex
+*.bin
+*.lock
 
 # OS generated files #
 ######################
