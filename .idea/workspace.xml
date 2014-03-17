@@ -82,7 +82,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/chris/lr/slidemenu/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="30" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0" vertical-offset="702" max-vertical-offset="5256">
+            <state line="35" column="30" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="5256">
               <folding />
             </state>
           </provider>
@@ -91,7 +91,40 @@
       <file leaf-file-name="FragmentNews.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentNews.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="13" selection-start="822" selection-end="822" vertical-scroll-proportion="0.33248082" vertical-offset="14" max-vertical-offset="1980">
+            <state line="34" column="0" selection-start="957" selection-end="957" vertical-scroll-proportion="0.5984655" vertical-offset="0" max-vertical-offset="846">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newsTextCard.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/card/newsTextCard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="33" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="1782">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1005#1274#0" expanded="true" />
+                <element signature="e#1263#1264#0" expanded="true" />
+                <element signature="e#1407#1807#0" expanded="true" />
+                <element signature="e#1796#1797#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebGetFileTask.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/web/WebGetFileTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1656">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebPostFileTask.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/web/WebPostFileTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="13" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2430">
               <folding />
             </state>
           </provider>
@@ -100,7 +133,7 @@
       <file leaf-file-name="BaseFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/BaseFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="53" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+            <state line="23" column="24" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="936">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -111,16 +144,7 @@
       <file leaf-file-name="FragmentHomepage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentHomepage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1800">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="24" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="522">
+            <state line="32" column="16" selection-start="884" selection-end="884" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1800">
               <folding />
             </state>
           </provider>
@@ -707,11 +731,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_news.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/card_inner_news_text.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/until/FragmentNews.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/chris/lr/slidemenu/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentNews.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/BaseFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentHomepage.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/chris/lr/slidemenu/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/BaseFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/card/newsTextCard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentNews.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/web/WebGetFileTask.java" />
       </list>
     </option>
   </component>
@@ -1003,6 +1029,120 @@
               <option name="myItemId" value="hitrip" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlideMenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlideMenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hitrip" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlideMenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlideMenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hitrip" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlideMenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlideMenu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hitrip" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="card" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1063,6 +1203,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/web" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/until" />
     </key>
   </component>
@@ -1317,31 +1458,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/card_inner_content.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="453" selection-end="453" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="504">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_homepage.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="7" selection-start="545" selection-end="545" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="486">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/chris/lr/slidemenu/LayoutRelative.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="2466" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="0" selection-start="475" selection-end="475" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="522">
@@ -1635,32 +1751,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/chris/lr/slidemenu/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="30" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0" vertical-offset="702" max-vertical-offset="5256">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/BaseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="53" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="0" selection-start="15" selection-end="15" vertical-scroll-proportion="0.046035804" vertical-offset="0" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentHomepage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="792" selection-end="792" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1800">
           <folding />
         </state>
       </provider>
@@ -1681,9 +1774,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/chris/lr/slidemenu/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="30" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="5256">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/BaseFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="24" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="936">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentHomepage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="16" selection-start="884" selection-end="884" vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="1800">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/card/newsTextCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="33" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="1782">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1005#1274#0" expanded="true" />
+            <element signature="e#1263#1264#0" expanded="true" />
+            <element signature="e#1407#1807#0" expanded="true" />
+            <element signature="e#1796#1797#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/web/WebGetFileTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/web/WebPostFileTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="13" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2430">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/seu/hitrip/fragment/FragmentNews.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="13" selection-start="822" selection-end="822" vertical-scroll-proportion="0.33248082" vertical-offset="14" max-vertical-offset="1980">
+        <state line="34" column="0" selection-start="957" selection-end="957" vertical-scroll-proportion="0.5984655" vertical-offset="0" max-vertical-offset="846">
           <folding />
         </state>
       </provider>

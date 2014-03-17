@@ -21,7 +21,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void setTitle(){
-        getActivity().setTitle(getTitleResourceId());
+        // todo 现在此方法不可用
+        // getActivity().setTitle(getTitleResourceId());
     }
 
     public abstract int getTitleResourceId();
