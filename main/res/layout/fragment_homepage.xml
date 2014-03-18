@@ -1,22 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!---
-    <it.gmariotti.cardslib.library.view.CardView
-        android:id="@+id/carddemo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="12dp"/>
-    -->
 
-    <it.gmariotti.cardslib.library.view.CardListView
+    <ScrollView
+        android:id="@+id/homepage_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/myList"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/homepage_card_Maylike1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                card:card_layout_resourceID="@layout/card_thumbnail_layout"
+                android:layout_marginTop="12dp" />
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:id="@+id/homepage_card_Maylike2"
+                card:card_layout_resourceID="@layout/card_thumbnail_layout"
+                android:layout_marginTop="2dp" />
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:id="@+id/homepage_card_Maylike3"
+                card:card_layout_resourceID="@layout/card_thumbnail_layout"
+                android:layout_marginTop="2dp" />
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/carddemo_suggested"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                card:card_layout_resourceID="@layout/card_suggest_layout"
+                android:layout_marginTop="12dp"/>
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/carddemo_circleleft"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                card:card_layout_resourceID="@layout/card_suggest_circleleft"
+                android:layout_marginTop="12dp"/>
+
+            <!-- Empty view-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
