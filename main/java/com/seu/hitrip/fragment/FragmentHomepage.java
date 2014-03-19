@@ -1,121 +1,67 @@
 package com.seu.hitrip.fragment;
 
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ScrollView;
 
-import com.chris.lr.slidemenu.R;
+import com.seu.hitrip.until.R;
+import com.seu.hitrip.card.MayLikeCard;
 
-import java.util.ArrayList;
-
-
-import it.gmariotti.cardslib.library.internal.Card;
-import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
-import it.gmariotti.cardslib.library.internal.CardExpand;
-import it.gmariotti.cardslib.library.internal.CardHeader;
-import it.gmariotti.cardslib.library.internal.base.BaseCard;
-import it.gmariotti.cardslib.library.view.CardListView;
 import it.gmariotti.cardslib.library.view.CardView;
 
 
 public class FragmentHomepage extends BaseFragment {
 
-    View self = null;
+    protected ScrollView mScrollView;
 
-    @Override
     public int getTitleResourceId() {
-        return 0;
+        return R.string.fragment_recommend_title;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceSate) {
-        self = inflater.inflate(R.layout.fragment_homepage, container, false);
-
-        ArrayList<Card> cards = new ArrayList<Card>();
-
-        for(int i = 0; i < 3; i++)
-            cards.add(getCard());
-
-        //CardView cardView = (CardView) self.findViewById(R.id.carddemo);
-
-        //cardView.setCard(getCard());
-
-        CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
-        mCardArrayAdapter.setEnableUndo(true);
-        CardListView listView = (CardListView) self.findViewById(R.id.myList);
-
-        if (listView!=null){
-            listView.setAdapter(mCardArrayAdapter);
-        }
-
-        return self;
+        return inflater.inflate(R.layout.fragment_homepage, container, false);
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mScrollView = (ScrollView) getActivity().findViewById(R.id.homepage_scrollview);
+
+        initCard();
     }
 
-    public Card getCard() {
+    public void initCard() {
+
         //Create a Card
-        Card card = new Card(getActivity(), R.layout.card_inner_content);
+        MayLikeCard card = new MayLikeCard(getActivity());
+        card.setShadow(false);
 
-        //Create a CardHeader
-        CardHeader header = new CardHeader(getActivity());
+        //Set card in the cardView
+        CardView cardView = (CardView) getActivity().findViewById(R.id.homepage_card_Maylike1);
+        cardView.setCard(card);
 
-        header.setTitle("title");
+        MayLikeCard card2 = new MayLikeCard(1, getActivity());
+        card2.addCardHeader(null);
+        card2.setShadow(false);
 
-        header.setButtonExpandVisible(true);
+        CardView cardView1 = (CardView) getActivity().findViewById(R.id.homepage_card_Maylike2);
+        cardView1.setCard(card2);
 
-        header.setPopupMenu(R.menu.main, new CardHeader.OnClickCardHeaderPopupMenuListener(){
-            @Override
-            public void onMenuItemClick(BaseCard card, MenuItem item) {
-                Toast.makeText(getActivity(), "Click on "+item.getTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        MayLikeCard card3 = new MayLikeCard(2, getActivity());
+        card2.addCardHeader(null);
+        card2.setShadow(true);
 
-        //Add Header to card
-        card.addCardHeader(header);
+        CardView cardView2 = (CardView) getActivity().findViewById(R.id.homepage_card_Maylike3);
+        cardView2.setCard(card3);
 
-        card.setTitle("My Title");
-
-        //Enable a swipe action
-        card.setSwipeable(true);
-
-        //Set onClick listener
-        card.setOnClickListener(new Card.OnCardClickListener() {
-            @Override
-            public void onClick(Card card, View view) {
-                Toast.makeText(getActivity(),"Clickable card", Toast.LENGTH_LONG).show();
-
-                card.setTitle("New Title");
-
-                // CardView cardView = (CardView) self.findViewById(R.id.carddemo);
-                ((CardView)view).refreshCard(card);
-            }
-        });
-
-        //This provide a simple (and useless) expand area
-        CardExpand expand = new CardExpand(getActivity());
-
-        //Set inner title in Expand Area
-        expand.setTitle("expend");
-
-        //Add expand to a card
-        card.addCardExpand(expand);
-
-        card.setExpanded(true);
-
-        card.setShadow(true);
-
-        return card;
     }
 
+    private void initCardSuggested() {
+
+    }
 
 }

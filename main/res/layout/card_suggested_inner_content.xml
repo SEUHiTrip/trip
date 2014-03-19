@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:gravity="center_vertical"
+    android:minHeight="150dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/carddemo_suggested_title"
+        style="@style/card_suggested_text_bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/carddemo_suggested_memeber"
+        android:paddingTop="5dp"
+        style="@style/card_suggested_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/carddemo_suggested_subtitle"
+        style="@style/card_suggested_text"
+        android:paddingTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/carddemo_suggested_community"
+        android:paddingTop="5dp"
+        style="@style/card_suggested_text_bold1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

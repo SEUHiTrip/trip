@@ -4,7 +4,27 @@
     <string name="app_name">SlideMenu</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="fragment_recommend_title">推荐</string>
     <string name="fragment_news_titile">新鲜事</string>
-    <string name="string_at">在</string>
+
+    <!-- You may like card -->
+    <string name="may_like_card_title">You may like</string>
+    <string name="may_like_card_subtitle">To see attractions that matches your interests.</string>
+    <string name="may_like_card_add">Check</string>
+
+    <string name="may_like_card_inner_title_0">Nanjing</string>
+    <string name="may_like_card_inner_subtitle_0">Ancient capital of China</string>
+    <string name="may_like_card_inner_title_1">Beijing</string>
+    <string name="may_like_card_inner_subtitle_1">Present capital of China</string>
+    <string name="may_like_card_inner_title_2">Shanghai</string>
+    <string name="may_like_card_inner_subtitle_2">Largest city of China</string>
+
+    <!-- Suggested Card -->
+    <string name="suggested_card_header">Shanxi</string>
+    <string name="suggested_card_title"></string>
+    <string name="suggested_card_member"></string>
+    <string name="suggested_card_subtitle"></string>
+    <string name="suggested_card_community"></string>
+
 
 </resources>

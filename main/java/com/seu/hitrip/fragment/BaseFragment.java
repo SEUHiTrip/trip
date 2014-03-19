@@ -1,12 +1,12 @@
 package com.seu.hitrip.fragment;
 
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
-
-import com.chris.lr.slidemenu.R;
+import com.seu.hitrip.until.R;
 
 
 /**
@@ -37,7 +37,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
         setTitle();
     }
 
