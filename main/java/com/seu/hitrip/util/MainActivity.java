@@ -1,8 +1,9 @@
-package com.chris.lr.slidemenu;
+package com.seu.hitrip.util;
 
-import com.chris.lr.slidemenu.LayoutRelative.OnScrollListener;
 import com.seu.hitrip.fragment.FragmentHomepage;
 import com.seu.hitrip.fragment.FragmentNews;
+import com.seu.hitrip.until.LayoutRelative;
+import com.seu.hitrip.until.R;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -92,8 +93,8 @@ public class MainActivity extends Activity implements OnGestureListener,
         mainLayout.setOnTouchListener(this);
         leftLayout.setOnTouchListener(this);
 
-        layoutSlideMenu = (LayoutRelative) findViewById(R.id.layoutSlideMenu);
-        layoutSlideMenu.setOnScrollListener(new OnScrollListener() {
+        layoutSlideMenu = (LayoutRelative)findViewById(R.id.layoutSlideMenu);
+        layoutSlideMenu.setOnScrollListener(new LayoutRelative.OnScrollListener() {
             @Override
             public void doOnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                 onScroll(distanceX);

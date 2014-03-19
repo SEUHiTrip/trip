@@ -6,6 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="fragment_recommend_title">推荐</string>
     <string name="fragment_news_titile">新鲜事</string>
+    <string name="string_at">在</string>
 
     <!-- You may like card -->
     <string name="may_like_card_title">You may like</string>
