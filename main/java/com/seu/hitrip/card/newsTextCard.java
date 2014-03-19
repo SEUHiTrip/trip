@@ -56,19 +56,6 @@ public class newsTextCard extends Card {
 
         card.setInnerLayout(R.layout.card_inner_news_text);
 
-        //This provide a simple (and useless) expand area
-        CardExpand expand = new CardExpand(context);
-
-        //Set inner title in Expand Area
-        expand.setTitle("expend");
-
-        expand.setInnerLayout(R.layout.card_expend_text);
-
-        //Add expand to a card
-        card.addCardExpand(expand);
-
-        card.setExpanded(true);
-
         card.setShadow(true);
 
         return card;
@@ -84,16 +71,12 @@ public class newsTextCard extends Card {
     @Override
     public void setupInnerViewElements(ViewGroup parent, View view) {
 
-        TextView newsTextView = (TextView) parent.findViewById(R.id.news_text);
-        TextView expendTextView = (TextView) view.findViewById(R.id.expend_text);
+        TextView username = (TextView) parent.findViewById(R.id.inner_news_user_name);
+        TextView msg = (TextView) parent.findViewById(R.id.news_inner_msg);
 
-        newsTextView.setText(people+content);
-        expendTextView.setText(people+content);
-
+        username.setText(people);
+        msg.setText(content);
 
         super.setupInnerViewElements(parent, view);
     }
-
-
-
 }
