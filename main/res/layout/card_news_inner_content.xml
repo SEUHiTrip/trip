@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:id="@+id/avatar"
+        android:id="@+id/card_news_inner_avatar"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -20,19 +20,19 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="User name"
-        android:id="@+id/inner_news_user_name"
-        android:layout_alignTop="@+id/avatar"
-        android:layout_toRightOf="@+id/avatar" />
+        android:id="@+id/card_news_inner_user_name"
+        android:layout_alignTop="@+id/card_news_inner_avatar"
+        android:layout_toRightOf="@+id/card_news_inner_avatar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Post time"
-        android:id="@+id/news_inner_post_time"
-        android:layout_below="@+id/news_inner_msg"
-        android:layout_alignLeft="@+id/news_inner_msg"
-        android:layout_alignStart="@+id/news_inner_msg"
+        android:id="@+id/card_news_inner_post_time"
+        android:layout_below="@+id/card_news_inner_msg"
+        android:layout_alignLeft="@+id/card_news_inner_msg"
+        android:layout_alignStart="@+id/card_news_inner_msg"
         android:layout_marginTop="16dp" />
 
     <TextView
@@ -40,9 +40,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Location"
-        android:id="@+id/news_inner_location"
+        android:id="@+id/card_news_inner_location"
         android:layout_marginLeft="8dp"
-        android:layout_alignBottom="@+id/avatar"
+        android:layout_alignBottom="@+id/card_news_inner_avatar"
         android:layout_toRightOf="@+id/textView" />
 
     <TextView
@@ -50,17 +50,17 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Hello world!"
-        android:id="@+id/news_inner_msg"
-        android:layout_below="@+id/avatar"
-        android:layout_alignLeft="@+id/avatar" />
+        android:id="@+id/card_news_inner_msg"
+        android:layout_below="@+id/card_news_inner_avatar"
+        android:layout_alignLeft="@+id/card_news_inner_avatar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/string_at"
-        android:layout_alignTop="@+id/news_inner_location"
-        android:layout_toRightOf="@+id/avatar"
+        android:layout_alignTop="@+id/card_news_inner_location"
+        android:layout_toRightOf="@+id/card_news_inner_avatar"
         android:id="@+id/textView" />
 
     <TextView
@@ -68,9 +68,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Action type"
-        android:id="@+id/textView2"
-        android:layout_alignTop="@+id/news_inner_location"
-        android:layout_toRightOf="@+id/news_inner_location"
+        android:id="@+id/card_news_inner_action_type"
+        android:layout_alignTop="@+id/card_news_inner_location"
+        android:layout_toRightOf="@+id/card_news_inner_location"
         android:layout_marginLeft="8dp" />
 
     <LinearLayout
@@ -78,15 +78,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
-        android:id="@+id/linearLayout"
-        android:layout_below="@+id/news_inner_post_time"
+        android:id="@+id/card_news_inner_layout"
+        android:layout_below="@+id/card_news_inner_post_time"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/pic"
+            android:id="@+id/card_news_inner_pic"
             android:layout_margin="24dp"
             android:src="@android:drawable/sym_def_app_icon" />
     </LinearLayout>

@@ -1,13 +1,17 @@
 package com.seu.hitrip.fragment;
 
-import com.seu.hitrip.card.NewsTextCard;
+import com.seu.hitrip.card.NewsCard;
 import com.seu.hitrip.cose.R;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
+import java.util.Date;
+
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.view.CardListView;
@@ -35,9 +39,10 @@ public class FragmentNews extends BaseFragment {
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        cards.add(NewsTextCard.getCard(getActivity(), "杨导", "我在"));
-        cards.add(NewsTextCard.getCard(getActivity(), "颢神", "我在"));
-        cards.add(NewsTextCard.getCard(getActivity(), "颢神", "我在"));
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.avatar);
+
+        cards.add(NewsCard.getCard(getActivity(), "杨导", "呵呵","seu",NewsCard.ACTION_PIC,new Date(),bitmap));
+        cards.add(NewsCard.getCard(getActivity(), "颢神", "嘿嘿","seu",NewsCard.ACTION_PIC,new Date(),bitmap));
 
         CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
         mCardArrayAdapter.setEnableUndo(true);
