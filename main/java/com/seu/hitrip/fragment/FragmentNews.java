@@ -1,6 +1,6 @@
 package com.seu.hitrip.fragment;
 
-import com.seu.hitrip.card.newsTextCard;
+import com.seu.hitrip.card.NewsTextCard;
 import com.seu.hitrip.cose.R;
 
 import android.os.Bundle;
@@ -35,9 +35,9 @@ public class FragmentNews extends BaseFragment {
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        cards.add(newsTextCard.getCard(getActivity(), "杨导", "我在"));
-        cards.add(newsTextCard.getCard(getActivity(), "颢神", "我在"));
-        cards.add(newsTextCard.getCard(getActivity(), "颢神", "我在"));
+        cards.add(NewsTextCard.getCard(getActivity(), "杨导", "我在"));
+        cards.add(NewsTextCard.getCard(getActivity(), "颢神", "我在"));
+        cards.add(NewsTextCard.getCard(getActivity(), "颢神", "我在"));
 
         CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
         mCardArrayAdapter.setEnableUndo(true);

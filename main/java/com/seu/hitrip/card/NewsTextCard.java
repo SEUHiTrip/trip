@@ -18,7 +18,7 @@ import it.gmariotti.cardslib.library.view.CardView;
 /**
  * Created by yqf on 3/17/14.
  */
-public class newsTextCard extends Card {
+public class NewsTextCard extends Card {
 
     private final String people;
     private final String content;
@@ -30,7 +30,7 @@ public class newsTextCard extends Card {
     public static Card getCard(final Context context,
                                String people,
                                String content){
-        newsTextCard card = new newsTextCard(context, people, content);
+        NewsTextCard card = new NewsTextCard(context, people, content);
 
         //Create a CardHeader
         CardHeader header = new CardHeader(context);
@@ -68,7 +68,7 @@ public class newsTextCard extends Card {
     }
 
 
-    private newsTextCard(Context context, String people, String content) {
+    private NewsTextCard(Context context, String people, String content) {
         super(context, R.layout.card_thumbnail_layout);
         this.people = people;
         this.content = content;
