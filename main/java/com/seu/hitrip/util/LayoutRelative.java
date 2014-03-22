@@ -1,4 +1,4 @@
-package com.chris.lr.slidemenu;
+package com.seu.hitrip.util;
 
 import android.content.Context;
 import android.util.AttributeSet;

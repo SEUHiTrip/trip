@@ -34,11 +34,18 @@
     <color name="demo_purchase_pressed">#CC2A84A5</color>
 
     <!-- color card -->
-    <color name="demo_card_background_color1">#FFBB33</color>
-    <color name="demo_card_background_color2">#98CC00</color>
-    <color name="demo_card_background_color3">#A966CC</color>
-    <color name="demo_card_background_color4">#33B4E4</color>
-    <color name="demo_card_background_color5">#FF4343</color>
+    <color name="card_background_color1">#FFBB33</color>
+    <color name="card_background_color2">#98CC00</color>
+    <color name="card_background_color3">#A966CC</color>
+    <color name="card_background_color4">#33B4E4</color>
+    <color name="card_background_color5">#FF4343</color>
+    <!-- suggest card header -->
+    <color name="suggest_header_color1">#EEEE00</color>
+    <color name="suggest_header_color2">#EE2C2C</color>
+    <color name="suggest_header_color3">#1C86EE</color>
+    <color name="suggest_header_color4">#FFFFFF</color>
+    <color name="suggest_header_color5">#EE7600</color>
+    <color name="suggest_header_color6">#EEAEEE</color>
 
     <!-- Birth new-->
     <color name="demo_card_header_birth_color">#707070</color>

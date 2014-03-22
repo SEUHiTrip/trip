@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.seu.hitrip.until.R;
+import com.seu.hitrip.cose.R;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.internal.CardThumbnail;
@@ -37,7 +37,6 @@ public class MayLikeCard extends Card {
     private void init() {
         //Add Header
         CardHeader header = new MayLikeCardHeader(getContext(), R.layout.card_maylike_inner_header);
-        header.setTitle(getContext().getString(R.string.may_like_card_title));
         addCardHeader(header);
         setShadow(false);
 
@@ -63,27 +62,26 @@ public class MayLikeCard extends Card {
         TextView add = (TextView) view.findViewById(R.id.card_maylike_main_inner_button);
         add.setClickable(true);
 
-        int titleText, subtitleText;
-        String urlResource;
+        int titleText, subtitleText, drawableResource;
         switch(sign) {
             case 1:
                 titleText = R.string.may_like_card_inner_title_1;
                 subtitleText = R.string.may_like_card_inner_subtitle_1;
-                urlResource = "https://plus.google.com/s2/photos/profile/114432517923423045208?sz=72";
+                drawableResource = R.drawable.ml02;
                 break;
             case 2:
                 titleText = R.string.may_like_card_inner_title_2;
                 subtitleText = R.string.may_like_card_inner_subtitle_2;
-                urlResource = "https://plus.google.com/s2/photos/profile/114432517923423045208?sz=72";
+                drawableResource = R.drawable.ml03;
                 break;
             default:
                 titleText = R.string.may_like_card_inner_title_0;
                 subtitleText = R.string.may_like_card_inner_subtitle_0;
-                urlResource = "https://plus.google.com/s2/photos/profile/114432517923423045208?sz=72";
+                drawableResource = R.drawable.ml01;
         }
         title.setText(getContext().getString(titleText));
         subtitle.setText(getContext().getString(subtitleText));
-        thumbnail.setUrlResource(urlResource);
+        thumbnail.setDrawableResource(drawableResource);
         thumbnail.setErrorResource(R.drawable.ic_error_loadingsmall);
 
         CardView cardView = getCardView();
@@ -107,10 +105,11 @@ public class MayLikeCard extends Card {
         @Override
         public void setupInnerViewElements(ViewGroup parent, View view) {
             super.setupInnerViewElements(parent, view);
+            TextView headertitle = (TextView) view.findViewById(R.id.card_maylike_header_inner_title);
+            headertitle.setText(getContext().getString(R.string.may_like_card_title));
 
-            TextView t1 = (TextView) view.findViewById(R.id.card_maylike_main_inner_subtitle);
-            if (t1 != null)
-                t1.setText(getContext().getString(R.string.may_like_card_subtitle));
+            TextView headersubtitle = (TextView) view.findViewById(R.id.card_maylike_header_inner_subtitle);
+            headersubtitle.setText(getContext().getString(R.string.may_like_card_subtitle));
         }
     }
 

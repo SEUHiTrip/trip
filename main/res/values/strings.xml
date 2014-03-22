@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SlideMenu</string>
+    <string name="app_name">HiTrip</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="fragment_recommend_title">推荐</string>
@@ -20,12 +20,20 @@
     <string name="may_like_card_inner_title_2">Shanghai</string>
     <string name="may_like_card_inner_subtitle_2">Largest city of China</string>
 
-    <!-- Suggested Card -->
-    <string name="suggested_card_header">Shanxi</string>
-    <string name="suggested_card_title"></string>
-    <string name="suggested_card_member"></string>
-    <string name="suggested_card_subtitle"></string>
-    <string name="suggested_card_community"></string>
+    <!-- Suggested Card Header -->
+    <string name="suggest_card_header1">婺源</string>
+    <string name="suggest_card_header2">北京</string>
+    <string name="suggest_card_header3">昆明</string>
+    <string name="suggest_card_header4">峨眉</string>
+    <string name="suggest_card_header5">台湾</string>
+    <string name="suggest_card_header6">南京</string>
+    <!-- Suggested Card Url -->
+    <string name="suggest_card_url1">http://lvyou.baidu.com/wuyuan</string>
+    <string name="suggest_card_url2">http://lvyou.baidu.com/beijing</string>
+    <string name="suggest_card_url3">http://lvyou.baidu.com/kunming</string>
+    <string name="suggest_card_url4">http://lvyou.baidu.com/emeishan</string>
+    <string name="suggest_card_url5">http://lvyou.baidu.com/taiwan</string>
+    <string name="suggest_card_url6">http://lvyou.baidu.com/nanjing</string>
 
 
 </resources>

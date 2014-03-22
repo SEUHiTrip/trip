@@ -1,9 +1,8 @@
 package com.seu.hitrip.util;
 
+import com.seu.hitrip.cose.R;
 import com.seu.hitrip.fragment.FragmentHomepage;
 import com.seu.hitrip.fragment.FragmentNews;
-import com.seu.hitrip.until.LayoutRelative;
-import com.seu.hitrip.until.R;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;

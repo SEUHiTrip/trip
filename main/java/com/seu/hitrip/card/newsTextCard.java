@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.seu.hitrip.cose.R;
 
-import com.seu.hitrip.until.R;
 
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardHeader;
@@ -22,8 +22,14 @@ public class newsTextCard extends Card {
 
     private final String people;
     private final String content;
+//    private final String location;
+//    private final String action_type;
+//    private final Date post_time;
+//    private final Bitmap avater;
 
-    public static Card getCard(final Context context, String people, String content){
+    public static Card getCard(final Context context,
+                               String people,
+                               String content){
         newsTextCard card = new newsTextCard(context, people, content);
 
         //Create a CardHeader

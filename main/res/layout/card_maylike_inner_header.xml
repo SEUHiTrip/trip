@@ -29,7 +29,7 @@
          You can popolate your element with CardHeader#setupInnerViewElements() method -->
     <TextView android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/card_header_inner_simple_title"
+        android:id="@+id/card_maylike_header_inner_title"
         android:textSize="24sp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
@@ -43,7 +43,7 @@
         android:textColor="#BBB"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
-        android:id="@+id/carddemo_maylike_main_inner_subtitle"
+        android:id="@+id/card_maylike_header_inner_subtitle"
         android:textSize="14sp"
         />
 

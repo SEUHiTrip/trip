@@ -4,16 +4,16 @@
     xmlns:card="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ScrollView
         android:id="@+id/homepage_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <it.gmariotti.cardslib.library.view.CardView
                 android:id="@+id/homepage_card_Maylike1"
@@ -43,7 +43,7 @@
                 android:layout_marginTop="2dp" />
 
             <it.gmariotti.cardslib.library.view.CardView
-                android:id="@+id/carddemo_suggested"
+                android:id="@+id/card_suggested1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -51,6 +51,53 @@
                 card:card_layout_resourceID="@layout/card_suggest_layout"
                 android:layout_marginTop="12dp"/>
 
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/card_suggested2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                card:card_layout_resourceID="@layout/card_suggest_layout"
+                android:layout_marginTop="12dp"/>
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/card_suggested3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                card:card_layout_resourceID="@layout/card_suggest_layout"
+                android:layout_marginTop="12dp"/>
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/card_suggested4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                card:card_layout_resourceID="@layout/card_suggest_layout"
+                android:layout_marginTop="12dp"/>
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/card_suggested5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                card:card_layout_resourceID="@layout/card_suggest_layout"
+                android:layout_marginTop="12dp"/>
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/card_suggested6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                card:card_layout_resourceID="@layout/card_suggest_layout"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <!--
             <it.gmariotti.cardslib.library.view.CardView
                 android:id="@+id/carddemo_circleleft"
                 android:layout_width="wrap_content"
@@ -60,11 +107,11 @@
                 card:card_layout_resourceID="@layout/card_suggest_circleleft"
                 android:layout_marginTop="12dp"/>
 
-            <!-- Empty view-->
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="15dp"/>
-
+            -->
         </LinearLayout>
 
     </ScrollView>

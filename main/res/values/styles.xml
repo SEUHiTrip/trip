@@ -113,7 +113,7 @@
     </style>
 
     <style name="card_maylike_main_inner_title.sub">
-        <item name="android:textSize">1sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@android:color/darker_gray</item>
     </style>
 

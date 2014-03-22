@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:paddingLeft="10dp"
-    android:gravity="center_vertical"
-    android:minHeight="150dp"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:background="#EDEDED">
+    <!--    android:paddingLeft="10dp"
+            android:minHeight="150dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            -->
+    <!--
     <TextView
-        android:id="@+id/carddemo_suggested_title"
+        android:id="@+id/card_suggested_title"
         style="@style/card_suggested_text_bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    -->
 
+    <ImageView
+        android:id="@+id/card_suggested_image"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:paddingBottom="1dp" />
+
+    <!--
     <TextView
         android:id="@+id/carddemo_suggested_memeber"
         android:paddingTop="5dp"
@@ -34,6 +44,6 @@
         style="@style/card_suggested_text_bold1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    -->
 
 </LinearLayout>

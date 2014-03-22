@@ -8,7 +8,7 @@
 
      <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:id="@+id/text_suggested_card1"
         style="@style/card_suggested_header_text"
         android:textSize="18sp"
@@ -16,7 +16,6 @@
         android:background="#53A93F"
         android:paddingLeft="10dp"
         android:gravity="center_vertical"
-        android:textColor="#FFF"
-        />
+        android:textColor="#FFF" />
 
 </LinearLayout>
