@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/map_point_detail_bg" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button android:id="@+id/map_point_play" android:background="@drawable/map_point_play" android:layout_width="wrap_content" android:layout_height="wrap_content"  />
+    <Button android:id="@+id/map_point_pause" android:background="@drawable/map_point_pause" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content"  />
+    <Button android:textSize="@dimen/text_middle_low" android:textColor="@color/white" android:id="@+id/tv_map_point_detail" android:background="@null" android:paddingLeft="@dimen/space_middle" android:paddingRight="@dimen/space_middle" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <Button android:id="@+id/map_point_detail" android:background="@drawable/map_point_detail" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onMapPoingDetail" />
+</LinearLayout>

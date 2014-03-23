@@ -7,7 +7,14 @@
     <string name="fragment_recommend_title">推荐</string>
     <string name="fragment_news_title">新鲜事</string>
     <string name="fragment_my_record_title">我的动态</string>
+    <string name="fragment_scenery_map_title">景区地图</string>
     <string name="string_at">在</string>
+
+    <string name="map_filter_all">全部</string>
+    <string name="map_filter_scenic">景点</string>
+    <string name="map_filter_room">酒店</string>
+    <string name="map_filter_food">美食</string>
+    <string name="error_map_loading">地图加载失败</string>
 
     <!-- You may like card -->
     <string name="may_like_card_title">You may like</string>

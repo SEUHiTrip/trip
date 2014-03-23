@@ -24,10 +24,6 @@ public class FragmentNews extends BaseFragment {
     View selfView = null;
     CardListView listView = null;
 
-    public FragmentNews(){
-        super();
-    }
-
     @Override
     public int getTitleResourceId() {
         return R.string.fragment_news_title;

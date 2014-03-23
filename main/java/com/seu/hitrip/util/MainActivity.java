@@ -4,7 +4,7 @@ import com.seu.hitrip.cose.R;
 import com.seu.hitrip.fragment.FragmentHomepage;
 import com.seu.hitrip.fragment.FragmentMyRecord;
 import com.seu.hitrip.fragment.FragmentNews;
-
+import com.seu.hitrip.fragment.FragmentSceneryMap;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.AsyncTask;
@@ -161,6 +161,9 @@ public class MainActivity extends Activity implements OnGestureListener,
                 break;
             case FRAGMENT_MY_RECORD:
                 newFragment = new FragmentMyRecord();
+                break;
+            case FRAGMENT_SCENERY_MAP:
+                newFragment = new FragmentSceneryMap();
                 break;
             default:
                 newFragment = new FragmentHomepage();

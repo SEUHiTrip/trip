@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:id="@+id/rootLayout">
+    
+     <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/content" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@+id/map_filter_all" android:background="@drawable/map_select_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0" android:onClick="onMapFilter">
+                <Button android:id="@+id/indicate" android:background="@drawable/btn_choice_map_point_all" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/map_filter_all" style="@style/text_map_filter" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@+id/map_filter_scenic" android:background="@drawable/map_select_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0" android:onClick="onMapFilter">
+                <Button android:id="@id/indicate" android:background="@drawable/btn_choice_map_point_scenic" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/map_filter_scenic" style="@style/text_map_filter" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@+id/map_filter_room" android:background="@drawable/map_select_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0" android:onClick="onMapFilter">
+                <Button android:id="@id/indicate" android:background="@drawable/btn_choice_map_point_room" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/map_filter_room" style="@style/text_map_filter" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@+id/map_filter_food" android:background="@drawable/map_select_normal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0" android:onClick="onMapFilter">
+                <Button android:id="@id/indicate" android:background="@drawable/btn_choice_map_point_food" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/map_filter_food" style="@style/text_map_filter" />
+            </LinearLayout>
+        </LinearLayout>
+        <View android:id="@+id/animation_view" android:background="@drawable/map_select_pressed" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_horizontal" android:layout_gravity="center|bottom|right" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/space_small_low" android:layout_marginBottom="@dimen/space_middle">
+        <FrameLayout android:orientation="vertical" android:id="@+id/audio_control" android:background="@drawable/btn_map_filter" android:layout_width="wrap_content" android:layout_height="wrap_content" >
+            <TextView android:layout_gravity="center" android:id="@+id/map_audio_play" android:background="@drawable/map_audio_play" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <ProgressBar android:layout_gravity="center" android:id="@+id/buffering" android:layout_width="wrap_content" android:layout_height="wrap_content" style="?android:attr/progressBarStyleSmall" android:visibility="gone" />
+            <TextView android:textSize="@dimen/text_small" android:textColor="@color/white" android:layout_gravity="center" android:id="@+id/timing" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </FrameLayout>
+        <ImageButton android:id="@+id/map_self_location" android:background="@drawable/btn_map_filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_small" android:src="@drawable/map_self_location"  />
+    </LinearLayout>
+    
+    
+</FrameLayout>

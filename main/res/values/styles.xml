@@ -16,6 +16,13 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+    
+     <style name="text_map_filter">
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginLeft">@dimen/space_mini</item>
+    </style>
     <!-- Text for sections -->
     <style name="AppTheme.TitleText">
         <item name="android:textSize">@dimen/demo_title_section_textsize</item>
