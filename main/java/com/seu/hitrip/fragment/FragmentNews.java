@@ -21,7 +21,7 @@ import it.gmariotti.cardslib.library.view.CardListView;
  */
 public class FragmentNews extends BaseFragment {
 
-    View self = null;
+    View selfView = null;
     CardListView listView = null;
 
     public FragmentNews(){
@@ -30,12 +30,12 @@ public class FragmentNews extends BaseFragment {
 
     @Override
     public int getTitleResourceId() {
-        return R.string.fragment_news_titile;
+        return R.string.fragment_news_title;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        self = inflater.inflate(R.layout.fragment_news, container, false);
+        selfView = inflater.inflate(R.layout.fragment_news, container, false);
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
@@ -49,11 +49,11 @@ public class FragmentNews extends BaseFragment {
         CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
         mCardArrayAdapter.setEnableUndo(true);
 
-        listView = (CardListView) self.findViewById(R.id.newsList);
+        listView = (CardListView) selfView.findViewById(R.id.news_list);
         if (listView!=null){
             listView.setAdapter(mCardArrayAdapter);
         }
 
-        return self;
+        return selfView;
     }
 }

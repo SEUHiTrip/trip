@@ -5,7 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="fragment_recommend_title">推荐</string>
-    <string name="fragment_news_titile">新鲜事</string>
+    <string name="fragment_news_title">新鲜事</string>
+    <string name="fragment_my_record_title">我的动态</string>
     <string name="string_at">在</string>
 
     <!-- You may like card -->

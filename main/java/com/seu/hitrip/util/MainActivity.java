@@ -2,6 +2,7 @@ package com.seu.hitrip.util;
 
 import com.seu.hitrip.cose.R;
 import com.seu.hitrip.fragment.FragmentHomepage;
+import com.seu.hitrip.fragment.FragmentMyRecord;
 import com.seu.hitrip.fragment.FragmentNews;
 
 import android.app.Fragment;
@@ -62,7 +63,7 @@ public class MainActivity extends Activity implements OnGestureListener,
     private final int FRAGMENT_SCENERY_MAP = 2;
     private final int FRAGMENT_NEARBY = 3;
     private final int FRAGMENT_NEWS = 4;
-    private final int FRAGMENT_MINE = 5;
+    private final int FRAGMENT_MY_RECORD = 5;
 
 
     private final String title[] = {
@@ -71,7 +72,7 @@ public class MainActivity extends Activity implements OnGestureListener,
             "景区地图", // FragmentSceneryMap
             "附近的人", // FragmentNearby
             "动态中心", // FragmentNews
-            "我的动态", // FragmentMine
+            "我的动态", // FragmentMYRECORD
             "设置" // FragmentSettings
     };
 
@@ -157,6 +158,9 @@ public class MainActivity extends Activity implements OnGestureListener,
         switch (i){
             case FRAGMENT_NEWS:
                 newFragment = new FragmentNews();
+                break;
+            case FRAGMENT_MY_RECORD:
+                newFragment = new FragmentMyRecord();
                 break;
             default:
                 newFragment = new FragmentHomepage();

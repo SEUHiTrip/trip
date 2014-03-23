@@ -3,7 +3,6 @@ package com.seu.hitrip.card;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.format.DateFormat;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,14 +11,11 @@ import android.widget.Toast;
 
 import com.seu.hitrip.cose.R;
 import com.seu.hitrip.util.BitmapTools;
-import com.seu.hitrip.util.MainActivity;
 
 
 import java.util.Date;
 
 import it.gmariotti.cardslib.library.internal.Card;
-import it.gmariotti.cardslib.library.internal.CardHeader;
-import it.gmariotti.cardslib.library.internal.base.BaseCard;
 import it.gmariotti.cardslib.library.view.CardView;
 
 /**
@@ -38,8 +34,8 @@ public class NewsCard extends Card {
     private final String people;
     private final String msg;
     private final String location;
-    private final int action_type;
-    private final Date post_time;
+    private final int actionType;
+    private final Date postTime;
     private final Bitmap avatar;
     private final Bitmap pic;
 
@@ -67,7 +63,7 @@ public class NewsCard extends Card {
             }
         });
 
-        card.setInnerLayout(R.layout.card_news_inner_content);
+        card.setInnerLayout(R.layout.card_news_inner_layout);
 
         card.setShadow(true);
 
@@ -79,16 +75,16 @@ public class NewsCard extends Card {
                      String people,
                      String content,
                      String location,
-                     int action_type,
-                     Date post_time,
+                     int actionType,
+                     Date postTime,
                      Bitmap avatar,
                      Bitmap pic){
         super(context, R.layout.card_thumbnail_layout);
         this.people = people;
         this.msg = content;
         this.location = location;
-        this.action_type = action_type;
-        this.post_time = post_time;
+        this.actionType = actionType;
+        this.postTime = postTime;
         this.avatar = avatar;
         this.pic = pic;
     }
@@ -96,20 +92,20 @@ public class NewsCard extends Card {
     @Override
     public void setupInnerViewElements(ViewGroup parent, View view) {
 
-        TextView username_view = (TextView) parent.findViewById(R.id.card_news_inner_user_name);
-        TextView msg_view = (TextView) parent.findViewById(R.id.card_news_inner_msg);
-        TextView location_view = (TextView) parent.findViewById(R.id.card_news_inner_location);
-        TextView action_type_view = (TextView) parent.findViewById(R.id.card_news_inner_action_type);
-        TextView post_time_view = (TextView) parent.findViewById(R.id.card_news_inner_post_time);
-        ImageView avatar_view = (ImageView) parent.findViewById(R.id.card_news_inner_avatar);
-        ImageView pic_view = (ImageView) parent.findViewById(R.id.card_news_inner_pic);
-        username_view.setText(people);
-        msg_view.setText(msg);
-        location_view.setText(location);
-        action_type_view.setText(ACTIONS[action_type]);
-        post_time_view.setText(DateFormat.format("MM.dd HH:mm",post_time));
-        avatar_view.setImageBitmap(BitmapTools.getRoundedCornerBitmap(avatar));
-        pic_view.setImageBitmap(pic);
+        TextView usernameView = (TextView) parent.findViewById(R.id.card_news_inner_user_name);
+        TextView msgView = (TextView) parent.findViewById(R.id.card_news_inner_msg);
+        TextView locationView = (TextView) parent.findViewById(R.id.card_news_inner_location);
+        TextView actionTypeView = (TextView) parent.findViewById(R.id.card_news_inner_action_type);
+        TextView postTimeView = (TextView) parent.findViewById(R.id.card_news_inner_post_time);
+        ImageView avatarView = (ImageView) parent.findViewById(R.id.card_news_inner_avatar);
+        ImageView picView = (ImageView) parent.findViewById(R.id.card_news_inner_pic);
+        usernameView.setText(people);
+        msgView.setText(msg);
+        locationView.setText(location);
+        actionTypeView.setText(ACTIONS[actionType]);
+        postTimeView.setText(DateFormat.format("MM.dd HH:mm", postTime));
+        avatarView.setImageBitmap(BitmapTools.getRoundedCornerBitmap(avatar));
+        picView.setImageBitmap(pic);
 
         super.setupInnerViewElements(parent, view);
     }
