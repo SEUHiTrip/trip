@@ -1,38 +1,30 @@
 package com.seu.hitrip.map;
 
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 
 public class MapObjectModel 
 {
 	private int x;
 	private int y;
-	private int id;
 	private String caption;
 	private Location location;
-	private int mp3;
+	private Drawable pic;
 	
-	public MapObjectModel(int id, Location location, String caption,int mp3)
+	public MapObjectModel(Location location, String caption, Drawable pic)
 	{
 		this.location = location;
 		this.caption = caption;
-		this.id = id;
-		this.mp3=mp3;
+		this.pic = pic;
 	}
 	
-	public MapObjectModel(int id, int x, int y, String caption,int mp3)
+	public MapObjectModel(int x, int y, String caption, Drawable pic)
 	{
-		this.id = id;
 		this.x = x;
 		this.y = y;
 		this.caption = caption;
-		this.mp3=mp3;
+		this.pic=pic;
 	}
-
-	public int getId() 
-	{
-		return id;
-	}
-
 	
 	public int getX() 
 	{
@@ -56,9 +48,6 @@ public class MapObjectModel
 	{
 		return caption;
 	}
-	
-	public int getMp3() {
-		return mp3;
-	}
 
+    public Drawable getPic() { return pic; }
 }

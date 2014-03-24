@@ -30,18 +30,6 @@ public class MapObjectContainer
 	}
 	
 	
-	public MapObjectModel getObjectById(int id)
-	{
-		for (MapObjectModel model:container) {
-			if (model.getId() == id) {
-				return model;
-			}
-		}
-		
-		return null;
-	}
-	
-	
 	public int size()
 	{
 		return container.size();

@@ -31,15 +31,16 @@ public class NewsCard extends Card {
     public static int ACTION_PIC = 0;
     public static int ACTION_TEXT = 1;
 
-    private final String people;
-    private final String msg;
-    private final String location;
-    private final int actionType;
-    private final Date postTime;
-    private final Bitmap avatar;
-    private final Bitmap pic;
+    private  String people;
+    private  String msg;
+    private  String location;
+    private  int actionType;
+    private  Date postTime;
+    private  Bitmap avatar;
+    private  Bitmap pic;
+    private ViewGroup parent;
 
-    public static Card getCard(final Context context,
+    public static NewsCard getCard(final Context context,
                                String people,
                                String content,
                                String location,
@@ -92,6 +93,7 @@ public class NewsCard extends Card {
     @Override
     public void setupInnerViewElements(ViewGroup parent, View view) {
 
+        this.parent = parent;
         TextView usernameView = (TextView) parent.findViewById(R.id.card_news_inner_user_name);
         TextView msgView = (TextView) parent.findViewById(R.id.card_news_inner_msg);
         TextView locationView = (TextView) parent.findViewById(R.id.card_news_inner_location);
@@ -109,4 +111,5 @@ public class NewsCard extends Card {
 
         super.setupInnerViewElements(parent, view);
     }
+
 }

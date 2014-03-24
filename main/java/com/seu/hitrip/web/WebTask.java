@@ -79,8 +79,8 @@ public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
             }  
             catch (IOException e)  {  
                 Log.e("web", "IOException");
-                e.printStackTrace();
-            }  
+                Log.e("web", e.toString());
+            }
         }  
         else  {  
             Log.e("web", "Url NULL");  

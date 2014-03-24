@@ -53,8 +53,10 @@ public abstract class WebGetTextTask extends WebTask {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+            Log.e("WebGetTextTask",e.toString());
 			return null;
 		}
+        Log.e("WebGetTextTask","return null");
 		return null;
 	}
 }
