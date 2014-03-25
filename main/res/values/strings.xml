@@ -6,9 +6,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="fragment_recommend_title">推荐</string>
     <string name="fragment_news_title">新鲜事</string>
+    <string name="fragment_common_map">市区地图</string>
     <string name="fragment_my_record_title">我的动态</string>
     <string name="fragment_scenery_map_title">景区地图</string>
     <string name="string_at">在</string>
+    <string name="fragment_status_title">编辑状态</string>
 
     <string name="map_filter_all">全部</string>
     <string name="map_filter_scenic">景点</string>

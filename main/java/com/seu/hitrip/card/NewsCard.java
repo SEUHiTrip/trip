@@ -2,6 +2,7 @@ package com.seu.hitrip.card;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.view.MenuItem;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.ViewGroup;

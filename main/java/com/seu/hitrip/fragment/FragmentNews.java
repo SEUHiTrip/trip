@@ -18,7 +18,6 @@ import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.view.CardListView;
 
-
 /**
  * Created by yqf on 3/9/14.
  */
@@ -44,17 +43,6 @@ public class FragmentNews extends BaseFragment {
 
         cards.add(NewsCard.getCard(getActivity(), "杨导", "呵呵","seu",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_1));
         cards.add(NewsCard.getCard(getActivity(), "颢神", "嘿嘿","seu",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_2));
-        cards.add(NewsCard.getCard(getActivity(), "颢神", "嘿嘿", "seu", NewsCard.ACTION_PIC, new Date(), bitmap_avatar, bitmap_pic_2));
-
-//        final NewsCard webcard = NewsCard.getCard(getActivity(), "颢神", "hehe", "seu", NewsCard.ACTION_PIC, new Date(), bitmap_avatar, bitmap_pic_2);
-//        cards.add(webcard);
-//        WebTask task = new WebGetTextTask("192.168.1.132","",new HashMap<String, String>()){
-//            @Override
-//            protected void onPostExecute(Object o) {
-//                Log.e("web", o.toString());
-//            }
-//        };
-//        task.execute();
 
         CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
         mCardArrayAdapter.setEnableUndo(true);

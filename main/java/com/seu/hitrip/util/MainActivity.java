@@ -1,10 +1,13 @@
 package com.seu.hitrip.util;
 
 import com.seu.hitrip.cose.R;
+import com.seu.hitrip.fragment.FragmentCommonMap;
 import com.seu.hitrip.fragment.FragmentHomepage;
 import com.seu.hitrip.fragment.FragmentMyRecord;
 import com.seu.hitrip.fragment.FragmentNews;
 import com.seu.hitrip.fragment.FragmentSceneryMap;
+// import com.seu.hitrip.fragment.FragmentStatus;
+
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.AsyncTask;
@@ -20,6 +23,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -76,6 +80,8 @@ public class MainActivity extends Activity implements OnGestureListener,
             "设置" // FragmentSettings
     };
 
+    private Button exit_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +137,15 @@ public class MainActivity extends Activity implements OnGestureListener,
         lp.leftMargin = -lp.width;
         leftLayout.setLayoutParams(lp);
 
+//iii        exit_button = (Button) findViewById(R.id.exit_button);
+//        exit_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //Fragment statusDialog = new FragmentStatus();
+//                //statusDialog.onStart();
+//            }
+//        });
+
         Bitmap userPic = BitmapFactory.decodeResource(getResources(),R.drawable.pic);
         userPic = getRoundedCornerBitmap(userPic);
         ImageView userP = (ImageView) findViewById(R.id.userPic);
@@ -158,6 +173,10 @@ public class MainActivity extends Activity implements OnGestureListener,
         switch (i){
             case FRAGMENT_NEWS:
                 newFragment = new FragmentNews();
+                break;
+            case FRAGMENT_NORMAL_MAP:
+                newFragment = new FragmentCommonMap();
+                //newFragment = new MapFragment();
                 break;
             case FRAGMENT_MY_RECORD:
                 newFragment = new FragmentMyRecord();

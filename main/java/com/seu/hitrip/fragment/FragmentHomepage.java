@@ -27,6 +27,7 @@ public class FragmentHomepage extends BaseFragment {
         return inflater.inflate(R.layout.fragment_homepage, container, false);
     }
 
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
