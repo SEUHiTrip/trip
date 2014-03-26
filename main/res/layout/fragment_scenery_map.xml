@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:id="@+id/rootLayout">
+    android:layout_height="fill_parent"
+    android:id="@+id/rootLayout">
 
     <LinearLayout android:gravity="center_horizontal" android:layout_gravity="center|bottom|right" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/space_small_low" android:layout_marginBottom="@dimen/space_middle">
-        <ImageButton android:id="@+id/map_self_location" android:background="@drawable/btn_map_filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_small" android:src="@drawable/map_self_location"  />
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            bootstrapbutton:bb_icon_left="fa-play-circle-o"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="info"
+            android:layout_marginTop="16dp"
+            android:id="@+id/footprint" />
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            bootstrapbutton:bb_icon_left="fa-crosshairs"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="success"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:id="@+id/map_self_location" />
     </LinearLayout>
 
 </FrameLayout>

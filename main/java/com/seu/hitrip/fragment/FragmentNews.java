@@ -41,8 +41,8 @@ public class FragmentNews extends BaseFragment {
         Bitmap bitmap_pic_1 = BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_1);
         final Bitmap bitmap_pic_2 = BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_2);
 
-        cards.add(NewsCard.getCard(getActivity(), "杨导", "呵呵","seu",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_1));
-        cards.add(NewsCard.getCard(getActivity(), "颢神", "嘿嘿","seu",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_2));
+        cards.add(NewsCard.getCard(getActivity(), "杨导", "湛蓝的天空","北京",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_1));
+        cards.add(NewsCard.getCard(getActivity(), "颢神", "茂密的竹林","南京",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_2));
 
         CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
         mCardArrayAdapter.setEnableUndo(true);

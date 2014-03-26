@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +21,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.ls.widgets.map.MapWidget;
 import com.ls.widgets.map.config.GPSConfig;
 import com.ls.widgets.map.config.MapGraphicsConfig;
@@ -47,15 +50,38 @@ import java.util.ArrayList;
 public class FragmentSceneryMap extends BaseFragment
         implements MapEventsListener,OnMapTouchListener,AMapLocationListener, Runnable {
 
+    Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            if(msg.what == 1) {
+
+                int i = msg.arg1;
+                if(i == mFootprints.size()) {
+                    footprintLayer.clearAll();
+                }else{
+                    //map.postInvalidate();
+                    MapObjectModel m = mFootprints.get(i);
+                    map.scrollMapTo(m.getX(), m.getY());
+                    addNotScalableMapObject(m,footprintLayer);
+
+                }
+            }
+            super.handleMessage(msg);
+        }
+    };
+
     private View selfView;
 
     private static final String TAG = "FragmentSceneryMap";
 
-    private static final Integer LAYER1_ID = 0;
+    private static final Integer SCENERY_LAYER_ID = 0;
+    private static final Integer FOOTPRINT_LAYER_ID = 1;
+    private static final Integer PEOPLE_LAYER_ID = 1;
     private static final int MAP_ID = 23;
     private int pinHeight;
 
-    private MapObjectContainer model;
+    private MapObjectContainer mScenery;
     private MapWidget map;
     private Popup mapObjectInfoPopup;
 
@@ -69,7 +95,15 @@ public class FragmentSceneryMap extends BaseFragment
     private AMapLocation aMapLocation;
     private Double longitude;
     private Double latitude;
-    private Layer layer1;
+    private Layer sceneryLayer;
+    private Layer footprintLayer;
+    private Layer peopleLayer;
+    private ArrayList<MapObjectModel> mFootprints;
+    private ArrayList<MapObjectModel> mPeople;
+
+    public FragmentSceneryMap(){
+        super();
+    }
 
     @Override
     public int getTitleResourceId() {
@@ -86,6 +120,15 @@ public class FragmentSceneryMap extends BaseFragment
         initMapListeners();
         map.setShowMyPosition(false);
         // map.centerMap();
+
+        BootstrapButton footprintButton = (BootstrapButton) selfView.findViewById(R.id.footprint);
+        footprintButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new FootprintDisplayThread().start();
+            }
+        });
+
         return selfView;
     }
 
@@ -93,8 +136,7 @@ public class FragmentSceneryMap extends BaseFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initGps();
-        model = new MapObjectContainer();
-
+        mScenery = new MapObjectContainer();
     }
     public void initGps(){
 
@@ -105,6 +147,7 @@ public class FragmentSceneryMap extends BaseFragment
         handler.postDelayed(this, 12000);
 
     }
+
 
     @Override
     public void onPause() {
@@ -158,7 +201,7 @@ public class FragmentSceneryMap extends BaseFragment
     @Override
     public void run() {
         if (aMapLocation == null) {
-            Toast.makeText(getActivity(), "12���ڻ�û�ж�λ�ɹ���ֹͣ��λ", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getActivity(), "12���ڻ�û�ж�λ�ɹ���ֹͣ��λ", Toast.LENGTH_SHORT).show();
             stopLocation();
         }
     }
@@ -208,6 +251,29 @@ public class FragmentSceneryMap extends BaseFragment
         return points[currentPoint];
     }
 
+    private void initLayer(){
+        map.createLayer(SCENERY_LAYER_ID);
+        map.createLayer(FOOTPRINT_LAYER_ID);
+        map.createLayer(PEOPLE_LAYER_ID);
+        sceneryLayer = map.getLayerById(SCENERY_LAYER_ID);
+        footprintLayer = map.getLayerById(FOOTPRINT_LAYER_ID);
+        peopleLayer = map.getLayerById(PEOPLE_LAYER_ID);
+
+    }
+
+    private void configMap(){
+        OfflineMapConfig config = map.getConfig();
+        config.setZoomBtnsVisible(true);
+        config.setPinchZoomEnabled(true);
+        config.setFlingEnabled(true);
+        config.setMaxZoomLevelLimit(maxLevel);
+        config.setMinZoomLevelLimit(minLevel);
+        config.setMapCenteringEnabled(true);
+
+        GPSConfig gpsConfig = config.getGpsConfig();
+        gpsConfig.setPassiveMode(false);
+        gpsConfig.setGPSUpdateInterval(1000, 5);
+    }
 
     private void initMap(Bundle savedInstanceState)
     {
@@ -222,23 +288,12 @@ public class FragmentSceneryMap extends BaseFragment
             e.printStackTrace();
         }
 
-
         map = new MapWidget(savedInstanceState, getActivity(), "map", 12);
 
         map.setId(MAP_ID);
+        initLayer();
 
-        OfflineMapConfig config = map.getConfig();
-        config.setZoomBtnsVisible(true);
-        config.setPinchZoomEnabled(true);
-        config.setFlingEnabled(true);
-        config.setMaxZoomLevelLimit(maxLevel);
-        config.setMinZoomLevelLimit(minLevel);
-        config.setMapCenteringEnabled(true);
-
-        GPSConfig gpsConfig = config.getGpsConfig();
-        gpsConfig.setPassiveMode(false);
-        gpsConfig.setGPSUpdateInterval(1000, 5);
-
+        configMap();
         configureLocationPointer();
 
         FrameLayout layout = (FrameLayout) selfView.findViewById(R.id.rootLayout);
@@ -246,10 +301,8 @@ public class FragmentSceneryMap extends BaseFragment
         layout.addView(map, 0);
         layout.setBackgroundColor(Color.parseColor("#4CB263"));
 
-        map.createLayer(LAYER1_ID);
+
     }
-
-
 
 
     private void configureLocationPointer()
@@ -270,9 +323,9 @@ public class FragmentSceneryMap extends BaseFragment
     private void initModel()
     {
         MapObjectModel objectModel = new MapObjectModel(500, 300, "location1", getResources().getDrawable(R.drawable.map_object));
-        model.addObject(objectModel);
+        mScenery.addObject(objectModel);
         objectModel = new MapObjectModel(600, 350, "location2", getResources().getDrawable(R.drawable.map_object));
-        model.addObject(objectModel);
+        mScenery.addObject(objectModel);
     }
 
 
@@ -282,27 +335,52 @@ public class FragmentSceneryMap extends BaseFragment
 
         mapObjectInfoPopup = new Popup(getActivity(),view, (FrameLayout)selfView.findViewById(R.id.rootLayout),map);
 
-        layer1 = map.getLayerById(LAYER1_ID);
-
-
-        for (int i=0; i<model.size(); ++i) {
-            addNotScalableMapObject(model.getObject(i), layer1);
+        for (int i=0; i< mScenery.size(); ++i) {
+            addNotScalableMapObject(mScenery.getObject(i), sceneryLayer);
         }
 
+        int[][] positions = {
+                {1157,2284},
+                {1144,2124},
+                {1138,1840},
+                {1138,1590},
+                {1406,1342},
+                {1798,1406},
+                {2052,1492},
+                {1756,748},
+                {2052,448},
+                {2112,148},
+                {1684,240},
+                {1172,728},
+                {248,532},
+                {592,920},
+                {388,884},
+                {80,988},
+                {772,1104},
+                {1144,996},
+                {392,1380},
+                {240,1932},
+                {276,2188},
+                {968,2108}
+        };
+
+        mFootprints = new ArrayList<MapObjectModel>(30);
+        for(int i = 1; i < positions.length ; i++)
+            mFootprints.add(new MapObjectModel(positions[i][0]/2, positions[i][1]/2,"footprint",getResources().getDrawable(R.drawable.avatar_small)));
+
+        mPeople = new ArrayList<MapObjectModel>(30);
+        
     }
 
 
-    public void addNotScalableMapObject(MapObjectModel objectModel,  Layer layer)
-    {
+    public void addNotScalableMapObject(MapObjectModel objectModel,  Layer layer){
         if (objectModel.getLocation() != null) {
             addNotScalableMapObject(objectModel, objectModel.getLocation(), layer, objectModel.getPic());
         } else {
             addNotScalableMapObject(objectModel, objectModel.getX(), objectModel.getY(), layer, objectModel.getPic());
         }
     }
-
-    private void addNotScalableMapObject(MapObjectModel objectModel, int x, int y,  Layer layer, Drawable drawable)
-    {
+    private void addNotScalableMapObject(MapObjectModel objectModel, int x, int y,  Layer layer, Drawable drawable) {
         pinHeight = drawable.getIntrinsicHeight();
         MapObject object1 = new MapObject(objectModel ,drawable,new Point(x, y), PivotFactory.createPivotPoint(drawable, PivotFactory.PivotPosition.PIVOT_CENTER),true, false);
         layer.addMapObject(object1);
@@ -437,7 +515,7 @@ public class FragmentSceneryMap extends BaseFragment
     {
 
         MapObjectModel objectModel = new MapObjectModel(500, 800, "location3", getResources().getDrawable(R.drawable.map_object));
-        addNotScalableMapObject(objectModel, layer1);
+        addNotScalableMapObject(objectModel, sceneryLayer);
 
         ArrayList<ObjectTouchEvent> touchedObjs = event.getTouchedObjectIds();
 
@@ -505,6 +583,20 @@ public class FragmentSceneryMap extends BaseFragment
         return (int)(mapCoord *  map.getScale() - map.getScrollY());
     }
 
+    class FootprintDisplayThread extends Thread{
+
+        @Override
+        public void run() {
+            for(int i = 0; i <= mFootprints.size() ; i++){
+                SystemClock.sleep(1000);
+                Message msg = mHandler.obtainMessage();
+                msg.what = 1;
+                msg.arg1 = i;
+                msg.sendToTarget();
+
+            }
+        }
+    }
 
 }
 

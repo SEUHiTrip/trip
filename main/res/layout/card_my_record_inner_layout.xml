@@ -14,8 +14,8 @@
         android:id="@+id/card_my_record_inner_backgroud"
         android:src="#8cff9c" />
     <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:id="@+id/card_my_record_inner_avatar"
         android:src="#5d43ff"
         android:scaleType="centerCrop"
@@ -23,24 +23,29 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp" />
 
-    <TextView
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="我的成就"
+        bootstrapbutton:bb_roundedCorners="true"
+        bootstrapbutton:bb_icon_left="fa-trophy"
+        bootstrapbutton:bb_type="danger"
+        bootstrapbutton:bb_size="small"
+        android:layout_alignTop="@+id/view"
+        android:layout_toLeftOf="@+id/card_my_record_inner_avatar" />
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="我的通知"
-        android:id="@+id/textView"
+        bootstrapbutton:bb_icon_left="fa-briefcase"
+        bootstrapbutton:bb_roundedCorners="true"
+        bootstrapbutton:bb_type="info"
         android:layout_marginTop="32dp"
         android:layout_below="@+id/card_my_record_inner_avatar"
-        android:layout_toRightOf="@+id/card_my_record_inner_avatar" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="旅行成就"
-        android:id="@+id/textView2"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toLeftOf="@+id/card_my_record_inner_avatar" />
+        bootstrapbutton:bb_size="small"
+        android:layout_toRightOf="@+id/card_my_record_inner_avatar"
+        android:id="@+id/view" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,62 +53,39 @@
         android:layout_below="@+id/card_my_record_inner_backgroud"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#a5b8ff"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/relativeLayout"
+        android:layout_alignParentEnd="false">
 
-        <TextView
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView3"
+            android:text="2  个旅程"
+            bootstrapbutton:bb_icon_left="fa-road"
+            bootstrapbutton:bb_roundedCorners="false"
+            bootstrapbutton:bb_type="success"
+            android:enabled="false"
+            bootstrapbutton:bb_size="large"
+            android:id="@+id/view"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_margin="10dp" />
 
-        <TextView
+        <com.beardedhen.androidbootstrap.BootstrapButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView4"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView5"
+            android:text="5  个旅友"
+            android:enabled="false"
+            bootstrapbutton:bb_icon_left="fa-user"
+            bootstrapbutton:bb_roundedCorners="false"
+            bootstrapbutton:bb_type="warning"
+            bootstrapbutton:bb_size="large"
+            android:id="@+id/view"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_margin="10dp" />
 
     </RelativeLayout>
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Two icons"
-        bootstrapbutton:bb_icon_left="fa-chevron-circle-right"
-        bootstrapbutton:bb_icon_right="fa-chevron-circle-left"
-        bootstrapbutton:bb_roundedCorners="true"
-        bootstrapbutton:bb_size="default"
-        bootstrapbutton:bb_type="primary"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

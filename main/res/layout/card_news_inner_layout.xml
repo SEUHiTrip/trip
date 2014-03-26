@@ -3,7 +3,8 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:layout_width="wrap_content"
@@ -106,26 +107,18 @@
         android:layout_above="@+id/imageView"
         android:layout_toLeftOf="@+id/card_news_inner_post_time" />
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:id="@+id/imageView5"
-        android:src="#000000"
-        android:alpha="0.5"
-        android:layout_marginBottom="17dp"
-        android:layout_alignBottom="@+id/card_news_inner_pic"
-        android:layout_alignRight="@+id/card_news_inner_location"
-        android:layout_alignEnd="@+id/card_news_inner_location"
-        android:layout_marginRight="16dp" />
 
-    <ImageView
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView4"
-        android:src="@drawable/ic_rating_good"
-        android:layout_alignTop="@+id/imageView5"
-        android:layout_alignRight="@+id/imageView5"
-        android:layout_alignEnd="@+id/imageView5"
-        android:layout_marginRight="25dp" />
+        android:text=""
+        bootstrapbutton:bb_icon_left="fa-thumbs-o-up"
+        bootstrapbutton:bb_roundedCorners="false"
+        bootstrapbutton:bb_type="info"
+        bootstrapbutton:bb_size="small"
+        android:id="@+id/view"
+        android:layout_alignTop="@+id/card_news_inner_avatar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

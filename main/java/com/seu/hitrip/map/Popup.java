@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.ls.widgets.map.MapWidget;
 import com.seu.hitrip.cose.R;
 
@@ -20,7 +21,7 @@ public class Popup extends MapPopupBase implements OnClickListener
 	private Button btnMapDetailAudioStop;
 	private Button tvMapPointDetail;
 	private Button map_point_detail;
-	private ImageButton self_location;
+	private BootstrapButton self_location;
 	private View view;
 	private Context context;
 	private MapObjectModel objectModel;
@@ -86,7 +87,7 @@ public class Popup extends MapPopupBase implements OnClickListener
 	    tvMapPointDetail = ((Button)view.findViewById(R.id.tv_map_point_detail));
 	    map_point_detail=(Button) view.findViewById(R.id.map_point_detail);
 
-	    self_location=(ImageButton) parentView.findViewById(R.id.map_self_location);
+	    self_location=(BootstrapButton) parentView.findViewById(R.id.map_self_location);
 	    self_location.setOnClickListener(this);
 	    btnMapDetailAudioPlay.setOnClickListener(this);
 	    btnMapDetailAudioStop.setOnClickListener(this);
