@@ -77,7 +77,7 @@ public class FragmentSceneryMap extends BaseFragment
 
     private static final Integer SCENERY_LAYER_ID = 0;
     private static final Integer FOOTPRINT_LAYER_ID = 1;
-    private static final Integer PEOPLE_LAYER_ID = 1;
+    private static final Integer PEOPLE_LAYER_ID = 2;
     private static final int MAP_ID = 23;
     private int pinHeight;
 
@@ -116,6 +116,7 @@ public class FragmentSceneryMap extends BaseFragment
         initTestLocationPoints();
         initMap(savedInstanceState);
         initModel();
+        initLayer();
         initMapObjects();
         initMapListeners();
         map.setShowMyPosition(false);
@@ -130,6 +131,12 @@ public class FragmentSceneryMap extends BaseFragment
         });
 
         return selfView;
+    }
+
+    private void initLayer() {
+        sceneryLayer = map.getLayerById(SCENERY_LAYER_ID);
+        footprintLayer = map.getLayerById(FOOTPRINT_LAYER_ID);
+        peopleLayer = map.getLayerById(PEOPLE_LAYER_ID);
     }
 
     @Override
@@ -251,13 +258,10 @@ public class FragmentSceneryMap extends BaseFragment
         return points[currentPoint];
     }
 
-    private void initLayer(){
+    private void createLayer(){
         map.createLayer(SCENERY_LAYER_ID);
         map.createLayer(FOOTPRINT_LAYER_ID);
         map.createLayer(PEOPLE_LAYER_ID);
-        sceneryLayer = map.getLayerById(SCENERY_LAYER_ID);
-        footprintLayer = map.getLayerById(FOOTPRINT_LAYER_ID);
-        peopleLayer = map.getLayerById(PEOPLE_LAYER_ID);
 
     }
 
@@ -291,7 +295,7 @@ public class FragmentSceneryMap extends BaseFragment
         map = new MapWidget(savedInstanceState, getActivity(), "map", 12);
 
         map.setId(MAP_ID);
-        initLayer();
+        createLayer();
 
         configMap();
         configureLocationPointer();
@@ -366,10 +370,17 @@ public class FragmentSceneryMap extends BaseFragment
 
         mFootprints = new ArrayList<MapObjectModel>(30);
         for(int i = 1; i < positions.length ; i++)
-            mFootprints.add(new MapObjectModel(positions[i][0]/2, positions[i][1]/2,"footprint",getResources().getDrawable(R.drawable.avatar_small)));
+            mFootprints.add(new MapObjectModel(positions[i][0]/2, positions[i][1]/2,"footprint",getResources().getDrawable(R.drawable.g)));
 
-        mPeople = new ArrayList<MapObjectModel>(30);
-        
+//        mPeople = new ArrayList<MapObjectModel>(30);
+//
+//        for(int i = 1; i < 5 ; i++)
+//            mPeople.add(new MapObjectModel(MathTools.getRandomBetween(1,2000), MathTools.getRandomBetween(1,2400)/2,"footprint",getResources().getDrawable(R.drawable.avatar_small)));
+
+//        for (int i=0; i< mPeople.size(); i++) {
+//            addNotScalableMapObject(mPeople.get(i), peopleLayer);
+//        }
+
     }
 
 
