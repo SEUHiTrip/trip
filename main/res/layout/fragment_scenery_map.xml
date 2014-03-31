@@ -7,6 +7,17 @@
     android:id="@+id/rootLayout">
 
     <LinearLayout android:gravity="center_horizontal" android:layout_gravity="center|bottom|right" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/space_small_low" android:layout_marginBottom="@dimen/space_middle">
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            bootstrapbutton:bb_icon_left="fa-camera-retro"
+            bootstrapbutton:bb_roundedCorners="true"
+            bootstrapbutton:bb_type="warning"
+            android:layout_marginTop="16dp"
+            android:id="@+id/post_pic" />
+
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

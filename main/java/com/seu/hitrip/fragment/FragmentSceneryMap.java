@@ -1,5 +1,6 @@
 package com.seu.hitrip.fragment;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -40,6 +41,7 @@ import com.seu.hitrip.cose.R;
 import com.seu.hitrip.map.MapObjectContainer;
 import com.seu.hitrip.map.MapObjectModel;
 import com.seu.hitrip.map.Popup;
+import com.seu.hitrip.person.PersonalInfo;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -122,6 +124,12 @@ public class FragmentSceneryMap extends BaseFragment
         map.setShowMyPosition(false);
         // map.centerMap();
 
+        registerButton();
+
+        return selfView;
+    }
+
+    private void registerButton(){
         BootstrapButton footprintButton = (BootstrapButton) selfView.findViewById(R.id.footprint);
         footprintButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +138,22 @@ public class FragmentSceneryMap extends BaseFragment
             }
         });
 
-        return selfView;
+        BootstrapButton postPicButton = (BootstrapButton) selfView.findViewById(R.id.post_pic);
+        postPicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PersonalInfo.addNewsInfo("hehe", BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_1));
+            }
+        });
+
+        BootstrapButton selfLocationButton = (BootstrapButton) selfView.findViewById(R.id.map_self_location);
+        selfLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                map.scrollMapTo(0,0);
+            }
+        });
+
     }
 
     private void initLayer() {

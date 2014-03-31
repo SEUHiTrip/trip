@@ -1,6 +1,7 @@
 package com.seu.hitrip.map;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.ls.widgets.map.MapWidget;
 import com.seu.hitrip.cose.R;
+import com.seu.hitrip.person.PersonalInfo;
 
 
 public class Popup extends MapPopupBase implements OnClickListener
@@ -162,9 +164,7 @@ public class Popup extends MapPopupBase implements OnClickListener
 //			intent.putExtra("�������", objectModel.getCaption());
 //			context.startActivity(intent);
 		   break;
-		case R.id.map_self_location:
-            map.scrollMapTo(0,0);
-            break;
+
 		default:
 			break;
 		}

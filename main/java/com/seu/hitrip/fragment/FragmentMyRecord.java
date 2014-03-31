@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.seu.hitrip.card.MyRecordCard;
 import com.seu.hitrip.card.NewsCard;
 import com.seu.hitrip.cose.R;
+import com.seu.hitrip.person.PersonalInfo;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +38,7 @@ public class FragmentMyRecord extends BaseFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         selfView = inflater.inflate(R.layout.fragment_my_record, container, false);
 
-        Bitmap bitmap_avatar = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
+        Bitmap bitmap_avatar = BitmapFactory.decodeResource(getResources(), R.drawable.g);
         Bitmap bitmap_pic_1 = BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_1);
         Bitmap bitmap_pic_2 = BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_2);
 
@@ -50,13 +51,18 @@ public class FragmentMyRecord extends BaseFragment{
 
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(myRecordCard);
-        cards.add(NewsCard.getCard(getActivity(), "颢神", "呵呵", "seu", NewsCard.ACTION_PIC, new Date(), bitmap_avatar, bitmap_pic_1));
-        cards.add(NewsCard.getCard(getActivity(), "颢神", "嘿嘿","seu",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_2));
+
+        for(int i = PersonalInfo.personalNews.size() - 1; i > -1; i--){
+            NewsCard.NewsInfo info = PersonalInfo.personalNews.get(i);
+            if(info.people == PersonalInfo.me)
+                cards.add(NewsCard.getCard(getActivity(), info));
+        }
 
         CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
 
         myNewsListView = (CardListView) selfView.findViewById(R.id.my_news_list);
         if (myNewsListView!=null){
+
             myNewsListView.setAdapter(mCardArrayAdapter);
         }
 

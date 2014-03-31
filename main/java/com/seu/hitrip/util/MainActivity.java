@@ -6,6 +6,7 @@ import com.seu.hitrip.fragment.FragmentHomepage;
 import com.seu.hitrip.fragment.FragmentMyRecord;
 import com.seu.hitrip.fragment.FragmentNews;
 import com.seu.hitrip.fragment.FragmentSceneryMap;
+import com.seu.hitrip.person.PersonalInfo;
 // import com.seu.hitrip.fragment.FragmentStatus;
 
 import android.app.Fragment;
@@ -87,6 +88,7 @@ public class MainActivity extends Activity implements OnGestureListener,
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        PersonalInfo.init(getResources());
         initView();
         initFragment();
     }

@@ -2,6 +2,7 @@ package com.seu.hitrip.fragment;
 
 import com.seu.hitrip.card.NewsCard;
 import com.seu.hitrip.cose.R;
+import com.seu.hitrip.person.PersonalInfo;
 import com.seu.hitrip.web.WebGetTextTask;
 import com.seu.hitrip.web.WebTask;
 import android.graphics.Bitmap;
@@ -37,12 +38,11 @@ public class FragmentNews extends BaseFragment {
 
         final ArrayList<Card> cards = new ArrayList<Card>();
 
-        final Bitmap bitmap_avatar = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
-        Bitmap bitmap_pic_1 = BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_1);
-        final Bitmap bitmap_pic_2 = BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_2);
 
-        cards.add(NewsCard.getCard(getActivity(), "杨导", "湛蓝的天空","北京",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_1));
-        cards.add(NewsCard.getCard(getActivity(), "颢神", "茂密的竹林","南京",NewsCard.ACTION_PIC,new Date(),bitmap_avatar,bitmap_pic_2));
+        for(int i = PersonalInfo.personalNews.size() - 1; i > -1; i--){
+            NewsCard.NewsInfo info = PersonalInfo.personalNews.get(i);
+            cards.add(NewsCard.getCard(getActivity(), info));
+        }
 
         CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(getActivity(),cards);
         mCardArrayAdapter.setEnableUndo(true);
