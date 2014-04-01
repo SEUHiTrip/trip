@@ -1,10 +1,13 @@
 package com.seu.hitrip.fragment;
 
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,9 +22,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationListener;
-import com.amap.api.location.LocationManagerProxy;
-import com.amap.api.location.LocationProviderProxy;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.ls.widgets.map.MapWidget;
 import com.ls.widgets.map.config.GPSConfig;
@@ -42,30 +42,63 @@ import com.seu.hitrip.map.MapObjectContainer;
 import com.seu.hitrip.map.MapObjectModel;
 import com.seu.hitrip.map.Popup;
 import com.seu.hitrip.person.PersonalInfo;
+import com.seu.hitrip.web.WebGetTextTask;
+import com.seu.hitrip.web.WebPostTextTask;
+import com.seu.hitrip.web.WebTask;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by yqf on 3/23/14.
  */
 public class FragmentSceneryMap extends BaseFragment
-        implements MapEventsListener,OnMapTouchListener,AMapLocationListener, Runnable {
+        implements MapEventsListener,OnMapTouchListener {
+    private static final String TAG = "FragmentSceneryMap";
+    private static final Integer SCENERY_LAYER_ID = 0;
+    private static final Integer FOOTPRINT_LAYER_ID = 1;
+    private static final Integer PEOPLE_LAYER_ID = 2;
+    final static int FOOTPRINT_MESSAGE = 1;
+    final static int CURRENTLOCATION_MESSAGE = 2;
 
-    Handler mHandler = new Handler() {
+    Handler mFootprintHandler = new Handler() {
+
+        MapObject me;
+
+        private void addMe(MapObjectModel objectModel, int x, int y,  Layer layer, Drawable drawable) {
+            pinHeight = drawable.getIntrinsicHeight();
+            me = new MapObject(objectModel ,drawable,new Point(x, y),
+                    PivotFactory.createPivotPoint(drawable, PivotFactory.PivotPosition.PIVOT_CENTER),true, false);
+            layer.addMapObject(me);
+        }
+
         @Override
         public void handleMessage(Message msg) {
 
-            if(msg.what == 1) {
+            if(msg.what == FOOTPRINT_MESSAGE) {
 
                 int i = msg.arg1;
                 if(i == mFootprints.size()) {
                     footprintLayer.clearAll();
+                }else if(i == 0){
+                    MapObjectModel m = mFootprints.get(i);
+                    map.scrollMapTo(m.getX(), m.getY());
+                    addMe(m,m.getX(),m.getY(),footprintLayer,m.getPic());
+
                 }else{
                     //map.postInvalidate();
                     MapObjectModel m = mFootprints.get(i);
                     map.scrollMapTo(m.getX(), m.getY());
-                    addNotScalableMapObject(m,footprintLayer);
+
+                    me.moveTo(m.getX(),m.getY());
+//                    addNotScalableMapObject(m,footprintLayer);
 
                 }
             }
@@ -73,35 +106,69 @@ public class FragmentSceneryMap extends BaseFragment
         }
     };
 
+    Handler mCurrentLocationHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.what == CURRENTLOCATION_MESSAGE) {
+
+                for(int i = mCurrentLocationArray.length() - 1; i > -1; i--){
+                    try {
+                        JSONObject locationRecord = mCurrentLocationArray.getJSONObject(i);
+
+                        displayLocationRecord(locationRecord);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+            super.handleMessage(msg);
+        }
+
+        private void displayLocationRecord(JSONObject locationRecord) {
+            try {
+                int id = locationRecord.getInt("id");
+                String name = locationRecord.getString("name");
+                PersonalInfo.People people = PersonalInfo.peopleMap.get(id);
+                if(people == null){
+                    people = new PersonalInfo.People(name,getResources().getDrawable(R.drawable.avatar_small));
+                    PersonalInfo.peopleMap.put(id, people);
+                }
+                people.currentLocation.setLatitude(locationRecord.getDouble("latitude"));
+                people.currentLocation.setLongitude(locationRecord.getDouble("longitude"));
+
+                if(people.mapObject == null){
+                    people.mapObject = addNotScalableMapObject(new MapObjectModel(people.currentLocation,people.name,people.avatar),peopleLayer);
+                }
+
+                int[] xy = transformLocationToXY(people.currentLocation);
+                people.mapObject.moveTo(xy[0]/2,xy[1]/2);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+
     private View selfView;
-
-    private static final String TAG = "FragmentSceneryMap";
-
-    private static final Integer SCENERY_LAYER_ID = 0;
-    private static final Integer FOOTPRINT_LAYER_ID = 1;
-    private static final Integer PEOPLE_LAYER_ID = 2;
     private static final int MAP_ID = 23;
     private int pinHeight;
-
     private MapObjectContainer mScenery;
     private MapWidget map;
     private Popup mapObjectInfoPopup;
-
-    private Location[] points;
     private int currentPoint;
     private int maxLevel=14;
-    private int minLevel=11;
-
-    private LocationManagerProxy mAMapLocManager;
-    private Handler handler = new Handler();
-    private AMapLocation aMapLocation;
-    private Double longitude;
-    private Double latitude;
+    private int minLevel=12;
     private Layer sceneryLayer;
     private Layer footprintLayer;
     private Layer peopleLayer;
     private ArrayList<MapObjectModel> mFootprints;
-    private ArrayList<MapObjectModel> mPeople;
+    private LocationManager mLocationManager;
+    private MyLocationListner mGPSListener;
+    private MyLocationListner mNetworkListner;
+    private CurrentLocationThread mCurrentLocationThread;
+    private JSONArray mCurrentLocationArray;
 
     public FragmentSceneryMap(){
         super();
@@ -115,7 +182,7 @@ public class FragmentSceneryMap extends BaseFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         selfView = inflater.inflate(R.layout.fragment_scenery_map, container, false);
-        initTestLocationPoints();
+
         initMap(savedInstanceState);
         initModel();
         initLayer();
@@ -132,9 +199,13 @@ public class FragmentSceneryMap extends BaseFragment
     private void registerButton(){
         BootstrapButton footprintButton = (BootstrapButton) selfView.findViewById(R.id.footprint);
         footprintButton.setOnClickListener(new View.OnClickListener() {
+
+            FootprintDisplayThread display = new FootprintDisplayThread();
+
             @Override
             public void onClick(View view) {
-                new FootprintDisplayThread().start();
+                if(display.isAlive()) return;
+                (display = new FootprintDisplayThread()).start();
             }
         });
 
@@ -170,115 +241,73 @@ public class FragmentSceneryMap extends BaseFragment
     }
     public void initGps(){
 
-        mAMapLocManager = LocationManagerProxy.getInstance(getActivity());
+//        mAMapLocManager = LocationManagerProxy.getInstance(getActivity());
+//
+//        mAMapLocManager.requestLocationUpdates(LocationProviderProxy.AMapNetwork, 5000, 10, this);
+//
+//        handler.postDelayed(this, 12000);
 
-        mAMapLocManager.requestLocationUpdates(LocationProviderProxy.AMapNetwork, 5000, 10, this);
+        mLocationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-        handler.postDelayed(this, 12000);
+        if (isGPSEnabled()) {
+            mGPSListener=new MyLocationListner();
+
+            //五个参数分别为位置服务的提供者，最短通知时间间隔，最小位置变化，listener，listener所在消息队列的looper  
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, mGPSListener);
+        }
+        else {
+            mNetworkListner=new MyLocationListner();
+
+            mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 0, mNetworkListner);
+        }
 
     }
+    public boolean isGPSEnabled() {
+        if(mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Log.i(Thread.currentThread().getName(), "isGPSEnabled");
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mCurrentLocationThread = new CurrentLocationThread();
+        mCurrentLocationThread.start();
+    }
 
     @Override
     public void onPause() {
         super.onPause();
         stopLocation();
+        mCurrentLocationThread.interrupt();
+        mCurrentLocationThread = null;
     }
 
     private void stopLocation() {
-        if (mAMapLocManager != null) {
-            mAMapLocManager.removeUpdates(this);
-            mAMapLocManager.destory();
-        }
-        mAMapLocManager = null;
+//        if (mAMapLocManager != null) {
+//            mAMapLocManager.removeUpdates(this);
+//            mAMapLocManager.destory();
+//        }
+//        mAMapLocManager = null;
+    if(mGPSListener!=null){
+        mLocationManager.removeUpdates(mGPSListener);
+        mGPSListener=null;
     }
-
-    @Override
-    public void onLocationChanged(Location location) {
+    if(mNetworkListner!=null){
+        mLocationManager.removeUpdates(mNetworkListner);
+        mNetworkListner=null;
     }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
     }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-
-    @Override
-    public void onLocationChanged(AMapLocation location) {
-        if (location != null) {
-            this.aMapLocation = location;
-
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
-
-            Toast.makeText(getActivity(), "当前地理位置坐标:(" + longitude + "," + latitude + ")", Toast.LENGTH_SHORT).show();
-
-        }
-
-    }
-
-
-    @Override
-    public void run() {
-        if (aMapLocation == null) {
-            // Toast.makeText(getActivity(), "12���ڻ�û�ж�λ�ɹ���ֹͣ��λ", Toast.LENGTH_SHORT).show();
-            stopLocation();
-        }
-    }
-
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         map.saveState(outState);
-    }
-
-    private void initTestLocationPoints()
-    {
-        points = new Location[5];
-        for (int i=0; i<points.length; ++i) {
-            points[i] = new Location("test");
-        }
-
-        points[0].setLatitude(3.2127012756213316);
-        points[0].setLongitude(73.03406774997711);
-
-        points[1].setLatitude(3.2122245926560167);
-        points[1].setLongitude(73.03744733333588);
-
-        points[2].setLatitude(3.2112819380469135);
-        points[2].setLongitude(73.03983449935913);
-
-        points[3].setLatitude(3.2130494147249915);
-        points[3].setLongitude(73.03946435451508);
-
-        points[4].setLatitude(3.2148276002942713);
-        points[4].setLongitude(73.03796768188477);
-
-        currentPoint = 0;
-    }
-
-
-    private Location getNextLocationPoint()
-    {
-        if (currentPoint < points.length-1) {
-            currentPoint += 1;
-        } else {
-            currentPoint = 0;
-        }
-
-        return points[currentPoint];
     }
 
     private void createLayer(){
@@ -296,6 +325,7 @@ public class FragmentSceneryMap extends BaseFragment
         config.setMaxZoomLevelLimit(maxLevel);
         config.setMinZoomLevelLimit(minLevel);
         config.setMapCenteringEnabled(true);
+
 
         GPSConfig gpsConfig = config.getGpsConfig();
         gpsConfig.setPassiveMode(false);
@@ -353,6 +383,15 @@ public class FragmentSceneryMap extends BaseFragment
         mScenery.addObject(objectModel);
         objectModel = new MapObjectModel(600, 350, "location2", getResources().getDrawable(R.drawable.map_object));
         mScenery.addObject(objectModel);
+
+        Location location = new Location("locationtest");
+        location.setLatitude(31.89256174);
+        location.setLongitude(118.8113451);
+
+        int[] xy = transformLocationToXY(location);
+
+        objectModel = new MapObjectModel(xy[0]/2,xy[1]/2, "location3", getResources().getDrawable(R.drawable.map_object));
+        mScenery.addObject(objectModel);
     }
 
 
@@ -367,7 +406,6 @@ public class FragmentSceneryMap extends BaseFragment
         }
 
         int[][] positions = {
-                {1157,2284},
                 {1144,2124},
                 {1138,1840},
                 {1138,1590},
@@ -386,52 +424,58 @@ public class FragmentSceneryMap extends BaseFragment
                 {772,1104},
                 {1144,996},
                 {392,1380},
-                {240,1932},
-                {276,2188},
-                {968,2108}
+                {240,1932}
         };
 
         mFootprints = new ArrayList<MapObjectModel>(30);
         for(int i = 1; i < positions.length ; i++)
             mFootprints.add(new MapObjectModel(positions[i][0]/2, positions[i][1]/2,"footprint",getResources().getDrawable(R.drawable.g)));
 
-//        mPeople = new ArrayList<MapObjectModel>(30);
-//
-//        for(int i = 1; i < 5 ; i++)
-//            mPeople.add(new MapObjectModel(MathTools.getRandomBetween(1,2000), MathTools.getRandomBetween(1,2400)/2,"footprint",getResources().getDrawable(R.drawable.avatar_small)));
+        Iterator iter = PersonalInfo.peopleMap.entrySet().iterator();
+        boolean isFirst = true;
+        while (iter.hasNext()) {
+            Map.Entry entry = (Map.Entry) iter.next();
 
-//        for (int i=0; i< mPeople.size(); i++) {
-//            addNotScalableMapObject(mPeople.get(i), peopleLayer);
-//        }
+            PersonalInfo.People people = (PersonalInfo.People) entry.getValue();
+            people.mapObject = addNotScalableMapObject(new MapObjectModel(people.currentLocation,people.name,people.avatar), peopleLayer);
 
-    }
-
-
-    public void addNotScalableMapObject(MapObjectModel objectModel,  Layer layer){
-        if (objectModel.getLocation() != null) {
-            addNotScalableMapObject(objectModel, objectModel.getLocation(), layer, objectModel.getPic());
-        } else {
-            addNotScalableMapObject(objectModel, objectModel.getX(), objectModel.getY(), layer, objectModel.getPic());
         }
-    }
-    private void addNotScalableMapObject(MapObjectModel objectModel, int x, int y,  Layer layer, Drawable drawable) {
-        pinHeight = drawable.getIntrinsicHeight();
-        MapObject object1 = new MapObject(objectModel ,drawable,new Point(x, y), PivotFactory.createPivotPoint(drawable, PivotFactory.PivotPosition.PIVOT_CENTER),true, false);
-        layer.addMapObject(object1);
-    }
-    private void addNotScalableMapObject(MapObjectModel objectModel, Location location, Layer layer, Drawable drawable) {
-        if (location == null)
-            return;
-        MapObject object1 = new MapObject(
-                objectModel,
-                drawable,
-                new Point(0, 0),
-                PivotFactory.createPivotPoint(drawable, PivotFactory.PivotPosition.PIVOT_CENTER),
-                true,
-                true);
-        layer.addMapObject(object1);
 
-        object1.moveTo(location);
+
+    }
+
+
+    public MapObject addNotScalableMapObject(MapObjectModel objectModel,  Layer layer){
+
+        return addNotScalableMapObject(objectModel, objectModel.getX(), objectModel.getY(), layer, objectModel.getPic());
+
+    }
+    private MapObject addNotScalableMapObject(MapObjectModel objectModel, int x, int y,  Layer layer, Drawable drawable) {
+        pinHeight = drawable.getIntrinsicHeight();
+        MapObject object1 = new MapObject(objectModel ,drawable,new Point(x, y),
+                PivotFactory.createPivotPoint(drawable, PivotFactory.PivotPosition.PIVOT_CENTER),true, false);
+        layer.addMapObject(object1);
+        return object1;
+    }
+
+
+    private int[] transformLocationToXY(Location location){
+        int[] xy = new int[2];
+
+        int x1 = 174;
+        int y1 = 248;
+        int x2 = 1763;
+        int y2 = 1779;
+
+        double lat1 = 31.89256174;
+        double lon1 = 118.8113451;
+        double lat2 = 31.88285992;
+        double lon2 = 118.8246489;
+
+        xy[0] = (int) ( (x2 - x1) / (lon2 - lon1) * (location.getLongitude()  - lon1) + x1);
+        xy[1] = (int) ( (y2 - y1) / (lat2 - lat1) * (location.getLatitude()   - lat1) + y1);
+
+        return xy;
     }
 
     private void initMapListeners()
@@ -476,7 +520,6 @@ public class FragmentSceneryMap extends BaseFragment
                 map.zoomOut();
                 return true;
             case R.id.scroll_next:
-                map.scrollMapTo(getNextLocationPoint());
                 break;
 
         }
@@ -547,10 +590,6 @@ public class FragmentSceneryMap extends BaseFragment
     @Override
     public void onTouch(MapWidget v, MapTouchedEvent event)
     {
-
-        MapObjectModel objectModel = new MapObjectModel(500, 800, "location3", getResources().getDrawable(R.drawable.map_object));
-        addNotScalableMapObject(objectModel, sceneryLayer);
-
         ArrayList<ObjectTouchEvent> touchedObjs = event.getTouchedObjectIds();
 
         if (touchedObjs.size() > 0) {
@@ -585,6 +624,7 @@ public class FragmentSceneryMap extends BaseFragment
         } else {
             if (mapObjectInfoPopup != null) {
                 mapObjectInfoPopup.hide();
+
             }
         }
     }
@@ -623,8 +663,8 @@ public class FragmentSceneryMap extends BaseFragment
         public void run() {
             for(int i = 0; i <= mFootprints.size() ; i++){
                 SystemClock.sleep(1000);
-                Message msg = mHandler.obtainMessage();
-                msg.what = 1;
+                Message msg = mFootprintHandler.obtainMessage();
+                msg.what = FOOTPRINT_MESSAGE;
                 msg.arg1 = i;
                 msg.sendToTarget();
 
@@ -632,5 +672,74 @@ public class FragmentSceneryMap extends BaseFragment
         }
     }
 
+    private class MyLocationListner implements LocationListener {
+
+        Location lastLocation = new Location("test");
+
+        boolean isLocationEqual(Location l1, Location l2){
+            return l1.getLatitude() == l2.getLatitude() && l1.getLongitude() == l2.getLongitude();
+        }
+
+        @Override
+        public void onLocationChanged(Location location) {
+            // 当LocationManager检测到最小位置变化时，就会回调到这里
+            Log.i("location", "Got New Location of provider:"+location.getProvider());
+            Log.i("location", "New Location:"+location.toString());
+
+            if(isLocationEqual(lastLocation,location)) return;
+
+            lastLocation = location;
+
+            int[] xy = transformLocationToXY(location);
+            map.scrollMapTo(xy[0]/2,xy[1]/2);
+
+        }
+
+        //后3个方法此处不做处理
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+        @Override
+        public void onProviderEnabled(String provider) {}
+
+        @Override
+        public void onProviderDisabled(String provider) {}
+
+    };
+
+    class CurrentLocationThread extends Thread{
+        @Override
+        public void run() {
+            while (true){
+                WebTask task = new WebPostTextTask("192.168.1.132","/i/locations/current",null,null){
+                    @Override
+                    protected void onPostExecute(Object o) {
+                        if(o == null) {
+                            Log.e("web", "result error");
+                            return;
+                        }
+
+                        String data = (String)o;
+                        Log.i("web task",data);
+                        try {
+                            JSONObject jsonObject = new JSONObject(data);
+                            if(jsonObject.getString("type").equals("ok")){
+                                mCurrentLocationArray = jsonObject.getJSONArray("current_locations_list");
+                                Message msg = mCurrentLocationHandler.obtainMessage();
+                                msg.what = CURRENTLOCATION_MESSAGE;
+                                msg.sendToTarget();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("json", e.toString());
+
+                        }
+                    }
+                };
+                task.execute();
+                SystemClock.sleep(10*1000);
+            }
+        }
+    }
 }
 

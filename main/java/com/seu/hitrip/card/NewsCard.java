@@ -79,7 +79,7 @@ public class NewsCard extends Card {
         locationView.setText(info.location);
         actionTypeView.setText(NewsInfo.ACTIONS[info.actionType]);
         postTimeView.setText(DateFormat.format("MM.dd HH:mm", info.postTime));
-        avatarView.setImageBitmap(BitmapTools.getRoundedCornerBitmap(info.people.avatar));
+        avatarView.setImageBitmap(BitmapTools.getRoundedCornerBitmap(((BitmapDrawable)info.people.avatar).getBitmap()));
         picView.setImageBitmap(info.pic);
 
         super.setupInnerViewElements(parent, view);

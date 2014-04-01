@@ -60,8 +60,8 @@ public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
                 
                 
                 if(getCookie() != null)
-                	urlConn.setRequestProperty("Cookie", getCookie()); 
-                
+                	urlConn.setRequestProperty("Cookie", getCookie());
+
                 beforeConnect(urlConn,arg0);
                 ///////////////////
                 urlConn.connect();
@@ -74,7 +74,6 @@ public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
 
                 ///////////////////
                 Object result = afterConnect(urlConn, arg0);
-                Log.i("web", "6" + result.toString());
                 return result;
             }  
             catch (IOException e)  {  
@@ -90,6 +89,7 @@ public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
 	
 	public static String stringfyMap(Map<String, String> query) {
 		StringBuilder sBuilder = new StringBuilder();
+        if(query == null) return sBuilder.toString();
 		Iterator iter = query.entrySet().iterator();
 		boolean isFirst = true;
 		while (iter.hasNext()) { 
@@ -109,7 +109,7 @@ public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
 	public static String buildUrlString(String ip, String handler, Map<String, String> query) {
 		StringBuilder sBuilder = new StringBuilder();
 		sBuilder.append("http://").append(ip).append(":").append(PORT)
-				.append("/").append(handler);
+				.append(handler);
 		if (query != null) {
 			sBuilder.append("?");
 			sBuilder.append(stringfyMap(query));

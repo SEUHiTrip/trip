@@ -47,9 +47,11 @@ public abstract class WebPostTextTask extends WebTask {
 	        
 		} catch (ProtocolException e) {
 			// TODO Auto-generated catch block
+            Log.e("web", e.toString());
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+            Log.e("web", e.toString());
 			e.printStackTrace();
 
 		}
@@ -80,9 +82,9 @@ public abstract class WebPostTextTask extends WebTask {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return null;
+            Log.e("web", "WebPostTextTask " + e.toString());
 		}
-		return null;
-	}
+        return null;
+    }
 
 }

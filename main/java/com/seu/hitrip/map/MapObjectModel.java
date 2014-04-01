@@ -1,5 +1,6 @@
 package com.seu.hitrip.map;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 
