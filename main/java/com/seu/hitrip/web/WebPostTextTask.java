@@ -3,25 +3,29 @@ package com.seu.hitrip.web;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 import android.R.integer;
 import android.R.interpolator;
 import android.util.Log;
 
+import org.apache.http.HttpStatus;
+
 public abstract class WebPostTextTask extends WebTask {
 
-	protected Map<String, String> body = null;
+	protected Map<String, Object> body = null;
 	
 	
 	public WebPostTextTask(String ip, String handler, 
-			Map<String, String> query, Map<String, String> body) {
+			Map<String, Object> query, Map<String, Object> body) {
 		super(ip, handler, query);
 		this.body = body;
 	}
@@ -62,8 +66,15 @@ public abstract class WebPostTextTask extends WebTask {
 		String resultData = "";
 		
 		try {
+            int status = urlConn.getResponseCode();
+
+            InputStream ins = null;
+            if(status >= HttpStatus.SC_BAD_REQUEST)
+                ins = urlConn.getErrorStream();
+            else
+                ins = urlConn.getInputStream();
 	        //得到读取的内容(流)  
-	        InputStreamReader in = new InputStreamReader(urlConn.getInputStream());  
+	        InputStreamReader in = new InputStreamReader(ins);
 	        // 为输出创建BufferedReader  
 	        BufferedReader buffer = new BufferedReader(in);  
 	        String inputLine = null;  

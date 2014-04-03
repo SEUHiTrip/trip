@@ -2,19 +2,23 @@ package com.seu.hitrip.web;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Map;
+import java.util.Objects;
 
 import android.R.integer;
 import android.util.Log;
 
+import org.apache.http.HttpStatus;
+
 public abstract class WebGetTextTask extends WebTask {
 
-	public WebGetTextTask(String ip, String handler, Map<String, String> query) {
+	public WebGetTextTask(String ip, String handler, Map<String, Object> query) {
 		super(ip, handler, query);
 		// TODO Auto-generated constructor stub
 	}
@@ -34,7 +38,14 @@ public abstract class WebGetTextTask extends WebTask {
 		String resultData = "";
 		//得到读取的内容(流)  
 		try {
-	        InputStreamReader in = new InputStreamReader(urlConn.getInputStream());  
+            int status = urlConn.getResponseCode();
+
+            InputStream ins = null;
+            if(status >= HttpStatus.SC_BAD_REQUEST)
+                ins = urlConn.getErrorStream();
+            else
+                ins = urlConn.getInputStream();
+	        InputStreamReader in = new InputStreamReader(ins);
 	        // 为输出创建BufferedReader  
 	        BufferedReader buffer = new BufferedReader(in);  
 	        String inputLine = null;  

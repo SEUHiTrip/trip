@@ -1,5 +1,7 @@
 package com.seu.hitrip.fragment;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -21,7 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-import com.amap.api.location.AMapLocation;
+
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.ls.widgets.map.MapWidget;
 import com.ls.widgets.map.config.GPSConfig;
@@ -37,12 +39,14 @@ import com.ls.widgets.map.interfaces.OnMapScrollListener;
 import com.ls.widgets.map.interfaces.OnMapTouchListener;
 import com.ls.widgets.map.model.MapObject;
 import com.ls.widgets.map.utils.PivotFactory;
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
+import com.seu.hitrip.card.NewsCard;
 import com.seu.hitrip.map.MapObjectContainer;
 import com.seu.hitrip.map.MapObjectModel;
 import com.seu.hitrip.map.Popup;
 import com.seu.hitrip.person.PersonalInfo;
-import com.seu.hitrip.web.WebGetTextTask;
+import com.seu.hitrip.util.StatusActivity;
+import com.seu.hitrip.web.WebPostFileTask;
 import com.seu.hitrip.web.WebPostTextTask;
 import com.seu.hitrip.web.WebTask;
 
@@ -50,11 +54,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by yqf on 3/23/14.
@@ -125,15 +133,17 @@ public class FragmentSceneryMap extends BaseFragment
             super.handleMessage(msg);
         }
 
-        private void displayLocationRecord(JSONObject locationRecord) {
+        private void displayLocationRecord(JSONObject record) {
             try {
-                int id = locationRecord.getInt("id");
-                String name = locationRecord.getString("name");
+                int id = record.getInt("id");
+                String name = record.getString("name");
                 PersonalInfo.People people = PersonalInfo.peopleMap.get(id);
                 if(people == null){
-                    people = new PersonalInfo.People(name,getResources().getDrawable(R.drawable.avatar_small));
+                    people = new PersonalInfo.People(id, name,getResources().getDrawable(R.drawable.avatar_small));
                     PersonalInfo.peopleMap.put(id, people);
                 }
+                JSONObject locationRecord = record.getJSONObject("current_location");
+                if(locationRecord == null) return;
                 people.currentLocation.setLatitude(locationRecord.getDouble("latitude"));
                 people.currentLocation.setLongitude(locationRecord.getDouble("longitude"));
 
@@ -159,16 +169,21 @@ public class FragmentSceneryMap extends BaseFragment
     private Popup mapObjectInfoPopup;
     private int currentPoint;
     private int maxLevel=14;
-    private int minLevel=12;
+    private int minLevel=13;
     private Layer sceneryLayer;
     private Layer footprintLayer;
     private Layer peopleLayer;
-    private ArrayList<MapObjectModel> mFootprints;
+    //足迹
+    public static ArrayList<MapObjectModel> mFootprints;
     private LocationManager mLocationManager;
     private MyLocationListner mGPSListener;
     private MyLocationListner mNetworkListner;
     private CurrentLocationThread mCurrentLocationThread;
     private JSONArray mCurrentLocationArray;
+    private FootprintDisplayThread mFootprintDisplayThread;
+
+    //Time
+    public static ArrayList<String> time = new ArrayList<String>();
 
     public FragmentSceneryMap(){
         super();
@@ -196,16 +211,43 @@ public class FragmentSceneryMap extends BaseFragment
         return selfView;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String news_text = data.getExtras().getString("text");
+        String news_img_url = data.getExtras().getString("img");
+
+        Bitmap news_img = BitmapFactory.decodeFile(news_img_url);
+
+        Map<String,Object> body = new HashMap<String, Object>();
+        body.put("id",PersonalInfo.me.id);
+        body.put("post_time",new Date().getTime());
+        body.put("action_type", NewsCard.NewsInfo.ACTION_PIC);
+        body.put("location","");
+        body.put("msg",news_text);
+
+        Map<String,File> files = new HashMap();
+        files.put("pic",new File(news_img_url));
+        WebTask task = new WebPostFileTask(WebTask.SERVER_ADDRESS,"/i/news/post/pic",null,body,files){
+            @Override
+            protected void onPostExecute(Object o) {
+
+                String string = (String) o;
+                Log.i("web /i/news/post/pic", string);
+            }
+        };
+        task.execute();
+        // PersonalInfo.addNewsInfo(news_text, news_img);
+    }
+
     private void registerButton(){
         BootstrapButton footprintButton = (BootstrapButton) selfView.findViewById(R.id.footprint);
         footprintButton.setOnClickListener(new View.OnClickListener() {
-
-            FootprintDisplayThread display = new FootprintDisplayThread();
-
             @Override
             public void onClick(View view) {
-                if(display.isAlive()) return;
-                (display = new FootprintDisplayThread()).start();
+                if(mFootprintDisplayThread != null )
+                    if(mFootprintDisplayThread.isAlive())
+                        return;
+                (mFootprintDisplayThread = new FootprintDisplayThread()).start();
             }
         });
 
@@ -213,7 +255,9 @@ public class FragmentSceneryMap extends BaseFragment
         postPicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PersonalInfo.addNewsInfo("hehe", BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_1));
+                Intent in = new Intent(getActivity(), StatusActivity.class);
+                startActivityForResult(in, 0);
+                // PersonalInfo.addNewsInfo("hehe", BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_1));
             }
         });
 
@@ -221,7 +265,8 @@ public class FragmentSceneryMap extends BaseFragment
         selfLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                map.scrollMapTo(0,0);
+                int[] xy = transformLocationToXY(PersonalInfo.me.currentLocation);
+                map.scrollMapTo(xy[0]/2,xy[1]/2);
             }
         });
 
@@ -282,10 +327,11 @@ public class FragmentSceneryMap extends BaseFragment
 
     @Override
     public void onPause() {
-        super.onPause();
         stopLocation();
-        mCurrentLocationThread.interrupt();
+        mCurrentLocationThread.interrupt();// invalid interrupt
         mCurrentLocationThread = null;
+
+        super.onPause();
     }
 
     private void stopLocation() {
@@ -345,7 +391,7 @@ public class FragmentSceneryMap extends BaseFragment
             e.printStackTrace();
         }
 
-        map = new MapWidget(savedInstanceState, getActivity(), "map", 12);
+        map = new MapWidget(savedInstanceState, getActivity(), "map", 14);
 
         map.setId(MAP_ID);
         createLayer();
@@ -392,6 +438,8 @@ public class FragmentSceneryMap extends BaseFragment
 
         objectModel = new MapObjectModel(xy[0]/2,xy[1]/2, "location3", getResources().getDrawable(R.drawable.map_object));
         mScenery.addObject(objectModel);
+
+        mFootprints = new ArrayList<MapObjectModel>(30);
     }
 
 
@@ -405,31 +453,6 @@ public class FragmentSceneryMap extends BaseFragment
             addNotScalableMapObject(mScenery.getObject(i), sceneryLayer);
         }
 
-        int[][] positions = {
-                {1144,2124},
-                {1138,1840},
-                {1138,1590},
-                {1406,1342},
-                {1798,1406},
-                {2052,1492},
-                {1756,748},
-                {2052,448},
-                {2112,148},
-                {1684,240},
-                {1172,728},
-                {248,532},
-                {592,920},
-                {388,884},
-                {80,988},
-                {772,1104},
-                {1144,996},
-                {392,1380},
-                {240,1932}
-        };
-
-        mFootprints = new ArrayList<MapObjectModel>(30);
-        for(int i = 1; i < positions.length ; i++)
-            mFootprints.add(new MapObjectModel(positions[i][0]/2, positions[i][1]/2,"footprint",getResources().getDrawable(R.drawable.g)));
 
         Iterator iter = PersonalInfo.peopleMap.entrySet().iterator();
         boolean isFirst = true;
@@ -645,7 +668,7 @@ public class FragmentSceneryMap extends BaseFragment
     /***
      * Transforms coordinate in map coordinate system to screen coordinate system
      * @param mapCoord - X in map coordinate in pixels.
-     * @return X coordinate in screen coordinates. You can use this value to display any object on the screen.
+     * @return X coordinate in screen coordinates. You can use this value to mFootprintDisplayThread any object on the screen.
      */
     private int xToScreenCoords(int mapCoord)
     {
@@ -661,7 +684,8 @@ public class FragmentSceneryMap extends BaseFragment
 
         @Override
         public void run() {
-            for(int i = 0; i <= mFootprints.size() ; i++){
+
+            for(int i = 0; i <= mFootprints.size() ; i++){ // white
                 SystemClock.sleep(1000);
                 Message msg = mFootprintHandler.obtainMessage();
                 msg.what = FOOTPRINT_MESSAGE;
@@ -691,8 +715,38 @@ public class FragmentSceneryMap extends BaseFragment
             lastLocation = location;
 
             int[] xy = transformLocationToXY(location);
-            map.scrollMapTo(xy[0]/2,xy[1]/2);
+            MapObjectModel objectModel = new MapObjectModel(xy[0] / 2, xy[1] / 2, "footprint", PersonalInfo.me.avatar);
+            objectModel.setLocation(lastLocation);
+            mFootprints.add(objectModel); // white
+            //Time
+            SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String date = sDateFormat.format(new java.util.Date());
+            time.add(date);
 
+            if(mFootprintDisplayThread != null )
+                if(mFootprintDisplayThread.isAlive())
+                    PersonalInfo.me.mapObject.moveTo(xy[0] / 2, xy[1] / 2);
+
+            startUpdateLocationTask(location);
+
+        }
+
+        private void startUpdateLocationTask(Location location){
+
+            Map<String,Object> map = new HashMap<String, Object>();
+            map.put("id",PersonalInfo.me.id);
+            map.put("latitude",location.getLatitude());
+            map.put("longitude",location.getLongitude());
+            map.put("timestamp",(new Date()).getTime());
+            // Log.i("web send", map.toString());
+            WebTask task = new WebPostTextTask(WebTask.SERVER_ADDRESS, "/i/locations/update",null,map) {
+                @Override
+                protected void onPostExecute(Object o) {
+                    String res = (String) o;
+                    Log.i("web", res);
+                }
+            };
+            task.execute();
         }
 
         //后3个方法此处不做处理
@@ -711,9 +765,13 @@ public class FragmentSceneryMap extends BaseFragment
         @Override
         public void run() {
             while (true){
-                WebTask task = new WebPostTextTask("192.168.1.132","/i/locations/current",null,null){
+                WebTask task = new WebPostTextTask(WebTask.SERVER_ADDRESS,"/i/locations/current",null,null){
                     @Override
                     protected void onPostExecute(Object o) {
+                        if(mFootprintDisplayThread != null )
+                            if(mFootprintDisplayThread.isAlive())
+                                return;
+
                         if(o == null) {
                             Log.e("web", "result error");
                             return;
@@ -737,7 +795,7 @@ public class FragmentSceneryMap extends BaseFragment
                     }
                 };
                 task.execute();
-                SystemClock.sleep(10*1000);
+                SystemClock.sleep(2*1000);
             }
         }
     }

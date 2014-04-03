@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.ls.widgets.map.MapWidget;
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 import com.seu.hitrip.person.PersonalInfo;
 
 

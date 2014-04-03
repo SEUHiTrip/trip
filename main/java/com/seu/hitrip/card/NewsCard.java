@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 import com.seu.hitrip.person.PersonalInfo;
 import com.seu.hitrip.util.BitmapTools;
 
@@ -85,7 +85,7 @@ public class NewsCard extends Card {
         super.setupInnerViewElements(parent, view);
     }
 
-    static public class NewsInfo {
+    static public class NewsInfo implements Comparable<NewsInfo> {
 
         public static String[] ACTIONS = {
                 "拍了照片",
@@ -116,6 +116,29 @@ public class NewsCard extends Card {
             this.actionType = actionType;
             this.postTime = postTime;
             this.pic = pic;
+        }
+
+
+        @Override
+        public int compareTo(NewsInfo newsInfo) {
+            return (int) (newsInfo.postTime.getTime() - this.postTime.getTime());
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if(! (obj instanceof NewsInfo)) return false;
+            NewsInfo info = (NewsInfo) obj;
+            if(!this.msg.equals(info.msg)) return false;
+            if(!(this.people.id == info.people.id)) return false;
+            if(!this.postTime.equals(info.postTime)) return false;
+            if(!(this.actionType == info.actionType)) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            return msg.hashCode()+postTime.hashCode();
         }
     }
 }

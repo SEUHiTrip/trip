@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 import com.seu.hitrip.util.BitmapTools;
 
 import it.gmariotti.cardslib.library.internal.Card;

@@ -1,9 +1,16 @@
 package com.seu.hitrip.util;
 
-import com.seu.hitrip.cose.R;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.seu.hitrip.R;
 import com.seu.hitrip.fragment.FragmentCommonMap;
+import com.seu.hitrip.fragment.FragmentGoogleMap;
 import com.seu.hitrip.fragment.FragmentHomepage;
 import com.seu.hitrip.fragment.FragmentMyRecord;
+import com.seu.hitrip.fragment.FragmentMyfootprint;
 import com.seu.hitrip.fragment.FragmentNews;
 import com.seu.hitrip.fragment.FragmentSceneryMap;
 import com.seu.hitrip.person.PersonalInfo;
@@ -11,6 +18,10 @@ import com.seu.hitrip.person.PersonalInfo;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +68,8 @@ public class MainActivity extends Activity implements OnGestureListener,
     private ImageView ivBack;
     private GestureDetector mGestureDetector;
 
+    public static int account = 1;
+
     private static final int SPEED = 1;
     private boolean bIsScrolling = false;
     //	private int iLimited = 0;
@@ -75,7 +88,7 @@ public class MainActivity extends Activity implements OnGestureListener,
             "首页", // FragmentHomepage
             "市区地图", // FragmentNormalMap
             "景区地图", // FragmentSceneryMap
-            "附近的人", // FragmentNearby
+            "我的足迹", // FragmentNearby
             "动态中心", // FragmentNews
             "我的动态", // FragmentMYRECORD
             "设置" // FragmentSettings
@@ -127,6 +140,7 @@ public class MainActivity extends Activity implements OnGestureListener,
 
                 changeFragment(i);
 
+
                 Toast.makeText(getApplicationContext(), title[i] + " : " + i, Toast.LENGTH_SHORT).show();
 
             }
@@ -139,20 +153,25 @@ public class MainActivity extends Activity implements OnGestureListener,
         lp.leftMargin = -lp.width;
         leftLayout.setLayoutParams(lp);
 
-//iii        exit_button = (Button) findViewById(R.id.exit_button);
-//        exit_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //Fragment statusDialog = new FragmentStatus();
-//                //statusDialog.onStart();
-//            }
-//        });
-
-        Bitmap userPic = BitmapFactory.decodeResource(getResources(),R.drawable.pic);
+        exit_button = (Button) findViewById(R.id.exit_button);
+        exit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeFragment(FRAGMENT_MY_RECORD);
+            }
+        });
+        Bitmap userPic = BitmapFactory.decodeResource(getResources(), account==1?R.drawable.userpic1:R.drawable.userpic2);
         userPic = getRoundedCornerBitmap(userPic);
         ImageView userP = (ImageView) findViewById(R.id.userPic);
         userP.setImageBitmap(userPic);
+        userP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
+        TextView userID = (TextView) findViewById(R.id.main_userid_text);
+        userID.setText(getString(account==1?R.string.account_id_1:R.string.account_id_2));
     }
 
     private void changeFragment(int i) {
@@ -177,7 +196,7 @@ public class MainActivity extends Activity implements OnGestureListener,
                 newFragment = new FragmentNews();
                 break;
             case FRAGMENT_NORMAL_MAP:
-                newFragment = new FragmentCommonMap();
+                newFragment = new FragmentGoogleMap();
                 //newFragment = new MapFragment();
                 break;
             case FRAGMENT_MY_RECORD:
@@ -185,6 +204,9 @@ public class MainActivity extends Activity implements OnGestureListener,
                 break;
             case FRAGMENT_SCENERY_MAP:
                 newFragment = new FragmentSceneryMap();
+                break;
+            case FRAGMENT_NEARBY:
+                newFragment = new FragmentMyfootprint();
                 break;
             default:
                 newFragment = new FragmentHomepage();

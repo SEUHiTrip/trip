@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.seu.hitrip.card.SuggestedCard;
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 import com.seu.hitrip.card.MayLikeCard;
 
 import it.gmariotti.cardslib.library.view.CardView;

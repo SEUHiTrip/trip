@@ -19,7 +19,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 
 public class FontAwesomeText extends FrameLayout {
 

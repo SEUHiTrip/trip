@@ -9,6 +9,7 @@
     <string name="fragment_common_map">市区地图</string>
     <string name="fragment_my_record_title">我的动态</string>
     <string name="fragment_scenery_map_title">景区地图</string>
+    <string name="fragment_my_footprint">我的足迹</string>
     <string name="string_at">在</string>
     <string name="fragment_status_title">编辑状态</string>
 
@@ -44,6 +45,11 @@
     <string name="suggest_card_url4">http://lvyou.baidu.com/emeishan</string>
     <string name="suggest_card_url5">http://lvyou.baidu.com/taiwan</string>
     <string name="suggest_card_url6">http://lvyou.baidu.com/nanjing</string>
+
+    <string name="account_id_1">White</string>
+    <string name="account_pw_1">123</string>
+    <string name="account_id_2">Black</string>
+    <string name="account_pw_2">123</string>
 
 
 </resources>

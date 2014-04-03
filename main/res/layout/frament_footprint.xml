@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <WebView
-        android:id="@+id/common_map_web"
+    <ListView
+        android:id="@+id/footprint_listview"
         android:layout_width="match_parent"
-        android:layout_height="1720px" />
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>

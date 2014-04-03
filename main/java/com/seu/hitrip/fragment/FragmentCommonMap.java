@@ -1,10 +1,16 @@
 package com.seu.hitrip.fragment;
 
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 
@@ -19,15 +25,19 @@ import com.baidu.mapapi.map.MapController;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationOverlay;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 import com.seu.hitrip.util.HiTrip;
 
 /**
  * Created by WhiteT on 3/22/14.
  */
-public class FragmentCommonMap extends BaseFragment {
+public class FragmentCommonMap extends BaseFragment implements LocationListener{
 
-/*
+    //private static final String MAP_URL = "http://gmaps-samples.googlecode.com/svn/trunk/articles-android-webmap/simple-android-map.html";
+    private static final String MAP_URL = "https://www.google.com.hk/maps/@31.8835448,118.8187479,21z";
+    private Location mostRecentLocation;
+    public WebView webView;
+
     public int getTitleResourceId() {
         return R.string.fragment_common_map;
     }
@@ -39,152 +49,50 @@ public class FragmentCommonMap extends BaseFragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String URL = "http://gmaps-samples.googlecode.com/svn/trunk/articles-android-webmap/simple-android-map.html";
-        WebView mWebView = (WebView) getActivity().findViewById(R.id.common_map_web);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl(URL);
-    }
-*/
 
-    static MapView mMapView = null;
-    private MapController mMapController = null;
-
-    private LocationClient mLocClient;
-    public MyLocationListener myListener;
-    MyLocationOverlay myLocationOverlay = null;
-    LocationData locData = null;
-
-    long startTime;
-    long costTime;
-
-    public int getTitleResourceId() {
-        return R.string.fragment_common_map;
+        getLocation();
+        setupWebView();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceSate) {
-        View v = inflater.inflate(R.layout.fragment_commonmap, container, false);
-        mMapView = (MapView) v.findViewById(R.id.baidu_map_view);
-        mMapController = mMapView.getController();
-        mMapView.getController().setZoom(14);
-        mMapView.getController().enableClick(true);
-        mMapView.setBuiltInZoomControls(true);
-        mLocClient.requestLocation();
-        myLocationOverlay = new MyLocationOverlay(mMapView);
-        locData = new LocationData();
-        myLocationOverlay.setData(locData);
-        mMapView.getOverlays().add(myLocationOverlay);
-        myLocationOverlay.enableCompass();
-        mMapView.refresh();
-        return v;
+    private void setupWebView() {
+        final String centerURL = "javascript:centerAt(" +
+                mostRecentLocation.getLatitude() + "," +
+                mostRecentLocation.getLongitude()+ ")";
+        webView = (WebView) getActivity().findViewById(R.id.common_map_web);
+        webView.getSettings().setJavaScriptEnabled(true);
+        //Wait for the page to load then send the location information
+        webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl(MAP_URL);
     }
 
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    private void getLocation() {
+        LocationManager locationManager =
+                (LocationManager)getActivity().getSystemService(getActivity().getApplicationContext().LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        String provider = locationManager.getBestProvider(criteria,true);
+        //In order to make sure the device is getting the location, request updates.
+        locationManager.requestLocationUpdates(provider, 1, 0, this);
+        mostRecentLocation = locationManager.getLastKnownLocation(provider);
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        HiTrip app = (HiTrip) getActivity().getApplication();
-        if (app.mBMapManager == null) {
-            app.mBMapManager = new BMapManager(getActivity());
-            app.mBMapManager.init(HiTrip.strKey, new HiTrip.MyGeneralListener());
-        }
-        mLocClient = new LocationClient(getActivity());
-        myListener = new MyLocationListener();
-        LocationClientOption option = new LocationClientOption();
-        option.setAddrType("all");
-        option.setPoiExtraInfo(true);
-        option.setPoiDistance(500);
-        option.setOpenGps(true);
-        option.setCoorType("bd09ll"); // 设置坐标类型
-        option.setScanSpan(5000);     //设置发起定位请求的间隔时间，单位毫秒
+    public void onLocationChanged(Location location) {
 
-        mLocClient.setLocOption(option);
-    }
-
-    public class MyLocationListener implements BDLocationListener {
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-            if (location == null)
-                return;
-            costTime = System.currentTimeMillis() - startTime;
-            Log.d("MapFragment", "" + costTime);
-            locData.latitude = location.getLatitude();
-            locData.longitude = location.getLongitude();
-            locData.accuracy = location.getRadius();
-            locData.direction = location.getDerect();
-            myLocationOverlay.setData(locData);
-            mMapView.refresh();
-            mMapController.animateTo(new GeoPoint((int) (locData.latitude * 1e6), (int) (locData.longitude * 1e6)));
-            // if request location success , stop it
-            stopRequestLocation();
-        }
-
-        public void onReceivePoi(BDLocation poiLocation) {
-            if (poiLocation == null) {
-                return;
-            }
-        }
-    }
-    //核心方法，避免因Fragment跳转导致地图崩溃
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser == true) {
-            // if this view is visible to user, start to request user location
-            startRequestLocation();
-        } else if (isVisibleToUser == false) {
-            // if this view is not visible to user, stop to request user
-            // location
-            stopRequestLocation();
-        }
-    }
-
-    private void stopRequestLocation() {
-        if (mLocClient != null) {
-            mLocClient.unRegisterLocationListener(myListener);
-            mLocClient.stop();
-        }
-    }
-
-    private void startRequestLocation() {
-        // this nullpoint check is necessary
-        if (mLocClient != null) {
-            mLocClient.registerLocationListener(myListener);
-            mLocClient.start();
-            mLocClient.requestLocation();
-            startTime = System.currentTimeMillis();
-            Toast.makeText(HiTrip.getInstance().getApplicationContext(),
-                    "开始获取位置", Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override
-    public void onPause() {
-        mMapView.onPause();
-        super.onPause();
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
     }
 
     @Override
-    public void onResume() {
-        mMapView.onResume();
-        super.onResume();
+    public void onProviderEnabled(String s) {
+
     }
 
     @Override
-    public void onDestroy() {
-        if (mLocClient != null)
-            mLocClient.stop();
-        mMapView.destroy();
-        super.onDestroy();
+    public void onProviderDisabled(String s) {
+
     }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mMapView.onSaveInstanceState(outState);
-    }
-
-
 }

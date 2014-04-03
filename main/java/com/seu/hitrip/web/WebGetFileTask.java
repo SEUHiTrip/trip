@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.Map;
+import java.util.Objects;
 
 import android.R.integer;
 import android.R.string;
@@ -17,9 +18,11 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.apache.http.HttpStatus;
+
 public class WebGetFileTask extends WebTask {
 
-	public WebGetFileTask(String ip, String handler, Map<String, String> query) {
+	public WebGetFileTask(String ip, String handler, Map<String, Object> query) {
 		super(ip, handler, query);
 		// TODO Auto-generated constructor stub
 	}
@@ -34,7 +37,14 @@ public class WebGetFileTask extends WebTask {
 		File file = null;
 		InputStream inputStream = null;
 		try {
-			inputStream = urlConn.getInputStream();
+            int status = urlConn.getResponseCode();
+
+            InputStream ins = null;
+            if(status >= HttpStatus.SC_BAD_REQUEST)
+                ins = urlConn.getErrorStream();
+            else
+                ins = urlConn.getInputStream();
+			inputStream = ins;
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

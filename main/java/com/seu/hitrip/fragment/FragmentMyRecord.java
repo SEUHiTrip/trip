@@ -2,6 +2,7 @@ package com.seu.hitrip.fragment;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.seu.hitrip.card.MyRecordCard;
 import com.seu.hitrip.card.NewsCard;
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 import com.seu.hitrip.person.PersonalInfo;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class FragmentMyRecord extends BaseFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         selfView = inflater.inflate(R.layout.fragment_my_record, container, false);
 
-        Bitmap bitmap_avatar = BitmapFactory.decodeResource(getResources(), R.drawable.g);
+        Bitmap bitmap_avatar = ((BitmapDrawable)PersonalInfo.me.avatar).getBitmap();
         Bitmap bitmap_pic_1 = BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_1);
         Bitmap bitmap_pic_2 = BitmapFactory.decodeResource(getResources(), R.drawable.news_pic_2);
 
@@ -52,8 +53,7 @@ public class FragmentMyRecord extends BaseFragment{
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(myRecordCard);
 
-        for(int i = PersonalInfo.personalNews.size() - 1; i > -1; i--){
-            NewsCard.NewsInfo info = PersonalInfo.personalNews.get(i);
+        for(NewsCard.NewsInfo info : PersonalInfo.personalNewsSet ){
             if(info.people == PersonalInfo.me)
                 cards.add(NewsCard.getCard(getActivity(), info));
         }

@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.beardedhen.androidbootstrap.utils.ImageUtils;
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 
 public class BootstrapCircleThumbnail extends FrameLayout
 {

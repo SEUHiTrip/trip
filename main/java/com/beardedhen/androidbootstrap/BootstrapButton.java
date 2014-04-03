@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 
 public class BootstrapButton extends FrameLayout {
 

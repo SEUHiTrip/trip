@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 import android.R.integer;
 import android.R.string;
@@ -17,6 +18,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
+    public static String SERVER_ADDRESS = "192.168.1.132";
 	public static final int PORT = 3000;
 	
 	public static final int FILE_URI = 1;
@@ -26,9 +28,9 @@ public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
 	
 	protected String ip = null;
 	protected String handler = null;
-	protected Map<String, String> query = null;
+	protected Map<String, Object> query = null;
 	
-	public WebTask(String ip, String handler, Map<String, String> query){
+	public WebTask(String ip, String handler, Map<String, Object> query){
 		this.ip = ip;
 		this.handler = handler;
 		this.query = query;
@@ -87,7 +89,7 @@ public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
 		return null;
 	}
 	
-	public static String stringfyMap(Map<String, String> query) {
+	public static String stringfyMap(Map<String, Object> query) {
 		StringBuilder sBuilder = new StringBuilder();
         if(query == null) return sBuilder.toString();
 		Iterator iter = query.entrySet().iterator();
@@ -106,7 +108,7 @@ public abstract class WebTask extends AsyncTask<Integer, Integer, Object>{
 		return sBuilder.toString();
 	}
 	
-	public static String buildUrlString(String ip, String handler, Map<String, String> query) {
+	public static String buildUrlString(String ip, String handler, Map<String, Object> query) {
 		StringBuilder sBuilder = new StringBuilder();
 		sBuilder.append("http://").append(ip).append(":").append(PORT)
 				.append(handler);

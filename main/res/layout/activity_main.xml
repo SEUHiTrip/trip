@@ -96,12 +96,12 @@
 			        android:layout_marginLeft="10dip"
 			        android:layout_marginRight="10dip"
 			        android:bottomLeftRadius="2dip" />
-			    <TextView 
+			    <TextView
+                    android:id="@+id/main_userid_text"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:layout_centerVertical="true"
 		            android:layout_centerHorizontal="true"
-		            android:text="WhiteT"
                     android:shadowColor="@color/black"
                     android:shadowDx="2"
                     android:shadowDy="3"

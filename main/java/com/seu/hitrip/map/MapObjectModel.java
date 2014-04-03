@@ -18,6 +18,10 @@ public class MapObjectModel
 		this.caption = caption;
 		this.pic = pic;
 	}
+
+    public void setLocation(Location location){
+        this.location = location;
+    }
 	
 	public MapObjectModel(int x, int y, String caption, Drawable pic)
 	{

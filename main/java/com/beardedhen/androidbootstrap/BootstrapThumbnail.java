@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 
 public class BootstrapThumbnail extends FrameLayout
 {

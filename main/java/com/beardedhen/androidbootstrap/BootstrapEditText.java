@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.EditText;
 
-import com.seu.hitrip.cose.R;
+import com.seu.hitrip.R;
 
 public class BootstrapEditText extends EditText {
 
